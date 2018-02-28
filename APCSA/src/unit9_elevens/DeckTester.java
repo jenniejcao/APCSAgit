@@ -10,33 +10,28 @@ public class DeckTester {
 	 */
 	public static void main(String[] args) {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
+		System.out.println("sample deck");
 		String[] ranks = {"A", "B", "C"};
 		String[] suits = {"red", "green"};
 		int[] values = {3,2,1};
 		Deck x = new Deck(ranks, suits, values);
-		System.out.println(x.size());
-		System.out.println(x.deal());
-		System.out.println(x.isEmpty());
-		System.out.println(x);
+		System.out.println("\nsize: "+x.size());
+		System.out.println("\ndeal: "+x.deal());
+		System.out.println("\nis empty: "+x.isEmpty());
+		System.out.println("\n"+x);
 		
+		System.out.println("\n52 card deck");
+		String[] deckranks={"ace","two","three", "four", "five", "six", "seven", "eight", "nine", "ten", "jack",
+				"queen", "king"};
+		String[] decksuits={"hearts", "spades", "clubs", "diamonds"};
+		int[] deckvalues={1,2,3,4,5,6,7,8,9,10,10,10,10};
+		Deck cards = new Deck(deckranks, decksuits, deckvalues);
+		System.out.println("\nsize: "+cards.size());
+		System.out.println("\ndeal: "+cards.deal());
+		System.out.println("\ndeal: "+cards.deal());
+		System.out.println("\n"+cards);
 		
-		String[] ranks2 = {"high", "medium", "low"};
-		String[] suits2= {"apple", "orange", "banana"	};
-		int[] values2 = {5,10,15};
-		Deck y = new Deck(ranks2, suits2, values2);
-		System.out.println(y.size());
-		System.out.println(y.deal());
-		System.out.println(y.isEmpty());
-		System.out.println(y);
+		}
 		
-		String[] ranks3 = {"j", "k" ,"l"};
-		String[] suits3= {"circle", "triangle"	};
-		int[] values3 = {1,2,3};
-		Deck z = new Deck(ranks3, suits3, values3);
-		System.out.println(z.size());
-		System.out.println(z.deal());
-		System.out.println(z.isEmpty());
-		System.out.println(z);
-		
-	}
+	
 }

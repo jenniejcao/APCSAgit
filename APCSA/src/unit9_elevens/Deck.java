@@ -1,5 +1,6 @@
 package unit9_elevens;
 import java.util.List;
+import java.util.Random;
 import java.util.ArrayList;
 
 /**
@@ -23,6 +24,8 @@ public class Deck {
 	 * The next card to be dealt is at size - 1.
 	 */
 	private int size;
+	private int savesize;
+	
 
 
 	/**
@@ -44,9 +47,20 @@ public class Deck {
 
 			}
 		}
+		
 		cards=temp;
 		size=ranks.length*suits.length;
-		shuffle();
+		System.out.println("unshuffled: ");
+		for (int i=0; i<cards.length; i++){
+			System.out.println(cards[i]);
+		}
+
+		System.out.println("\nshuffled: ");
+		shuffle(cards);
+		for (int i=0; i<cards.length; i++){
+			System.out.println(cards[i]);
+		}
+		
 	}
 
 
@@ -78,8 +92,20 @@ public class Deck {
 	 * Randomly permute the given collection of cards
 	 * and reset the size to represent the entire deck.
 	 */
-	public void shuffle() {
+	public void shuffle(Card[] values) {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 4 *** */
+		int j;
+		int [] shuffled = new int[values.length];
+		for (int k=values.length-1; k>0; k--){
+			Random r= new Random();
+			j=r.nextInt(k);
+			Card kholder=values[k];
+			values[k]=values[j];
+			values[j]=kholder;
+			
+			
+		}
+		size=savesize;
 	}
 
 	/**
