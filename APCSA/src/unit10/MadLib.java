@@ -15,6 +15,9 @@ public class MadLib
 	Random r= new Random();
 	public MadLib()
 	{
+		verbs = new ArrayList<String>();
+		nouns = new ArrayList<String>();
+		adjectives = new ArrayList<String>();
 		loadNouns();
 		loadVerbs();
 		loadAdjectives();
@@ -24,6 +27,9 @@ public class MadLib
 	public MadLib(String fileName)
 	{
 		//load stuff
+		verbs = new ArrayList<String>();
+		nouns = new ArrayList<String>();
+		adjectives = new ArrayList<String>();
 		loadNouns();
 		loadVerbs();
 		loadAdjectives();
