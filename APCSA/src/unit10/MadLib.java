@@ -9,15 +9,13 @@ import java.util.Random;
 
 public class MadLib
 {
-	private ArrayList<String> verbs=new ArrayList<String>();;
-	private ArrayList<String> nouns=new ArrayList<String>();;
-	private ArrayList<String> adjectives=new ArrayList<String>();;
+	private ArrayList<String> verbs=new ArrayList<String>();
+	private ArrayList<String> nouns=new ArrayList<String>();
+	private ArrayList<String> adjectives=new ArrayList<String>();
 	Random r= new Random();
 	public MadLib()
 	{
-		verbs = new ArrayList<String>();
-		nouns = new ArrayList<String>();
-		adjectives = new ArrayList<String>();
+		
 		loadNouns();
 		loadVerbs();
 		loadAdjectives();
@@ -31,21 +29,23 @@ public class MadLib
 		loadNouns();
 		loadVerbs();
 		loadAdjectives();
-		 ArrayList<String> words = new ArrayList<String>();
+		
 	
 		try{
 			Scanner file6 = new Scanner(new File(fileName));
 	
 			while (file6.hasNext()){
-				
 				if (file6.next().equals("#")){
-					getRandomNoun();
+					System.out.print(getRandomNoun());
 				}
-				if (file6.next().equals("@")){
-					getRandomVerb();
+				else if (file6.next().equals("@")){
+					System.out.print(getRandomVerb());
 				}
-				if (file6.next().equals("&")){
-					getRandomAdjective();
+				else if (file6.next().equals("&")){
+					System.out.print(getRandomAdjective());
+				}
+				else{
+					System.out.print(file6.next());
 				}
 				
 			}
@@ -63,12 +63,12 @@ public class MadLib
 	{
 		try{
 			Scanner file2 = new Scanner(new File("nouns.dat"));
-			int i =0;
+			
 			while (file2.hasNext()){
-				nouns.add(i, file2.next());
-				i++;
+				nouns.add(file2.next());
+				
 			}
-		
+
 		
 		}
 		catch(Exception e)
@@ -82,10 +82,10 @@ public class MadLib
 	{
 		try{
 			Scanner file3 = new Scanner(new File("verbs.dat"));
-			int i =0;
+		
 			while (file3.hasNext()){
-				verbs.add(i, file3.next());
-				i++;
+				verbs.add(file3.next());
+		
 			}
 
 	
@@ -100,11 +100,11 @@ public class MadLib
 	public void loadAdjectives()
 	{
 		try{
-			Scanner file4 = new Scanner(new File("adjectives (3).dat"));
-			int i =0;
+			Scanner file4 = new Scanner(new File("adjectives.dat"));
+		
 			while (file4.hasNext()){
-				nouns.add(i, file4.next());
-				i++;
+				nouns.add(file4.next());
+	
 			}
 	
 	
