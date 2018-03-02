@@ -56,11 +56,11 @@ public class Deck {
 		}
 
 		System.out.println("\nshuffled: ");
-		shuffle(cards);
+		shuffle();
 		for (int i=0; i<cards.length; i++){
 			System.out.println(cards[i]);
 		}
-		
+		 size=cards.length;
 	}
 
 
@@ -84,7 +84,6 @@ public class Deck {
 	 */
 	public int size() {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
-		size=cards.length;
 		return size;
 	}
 
@@ -92,20 +91,20 @@ public class Deck {
 	 * Randomly permute the given collection of cards
 	 * and reset the size to represent the entire deck.
 	 */
-	public void shuffle(Card[] values) {
+	public void shuffle() {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 4 *** */
 		int j;
-		int [] shuffled = new int[values.length];
-		for (int k=values.length-1; k>0; k--){
+		int [] shuffled = new int[size];
+		for (int k=size-1; k>0; k--){
 			Random r= new Random();
 			j=r.nextInt(k);
-			Card kholder=values[k];
-			values[k]=values[j];
-			values[j]=kholder;
+			Card kholder=cards[k];
+			cards[k]=cards[j];
+			cards[j]=kholder;
 			
 			
 		}
-		size=savesize;
+		
 	}
 
 	/**

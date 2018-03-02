@@ -26,6 +26,7 @@ public class DeckTester {
 		String[] decksuits={"hearts", "spades", "clubs", "diamonds"};
 		int[] deckvalues={1,2,3,4,5,6,7,8,9,10,10,10,10};
 		Deck cards = new Deck(deckranks, decksuits, deckvalues);
+		System.out.println("\n"+cards);
 		System.out.println("\nsize: "+cards.size());
 		System.out.println("\ndeal: "+cards.deal());
 		System.out.println("\ndeal: "+cards.deal());

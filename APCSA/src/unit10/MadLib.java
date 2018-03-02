@@ -9,9 +9,9 @@ import java.util.Random;
 
 public class MadLib
 {
-	private ArrayList<String> verbs;
-	private ArrayList<String> nouns;
-	private ArrayList<String> adjectives;
+	private ArrayList<String> verbs=new ArrayList<String>();;
+	private ArrayList<String> nouns=new ArrayList<String>();;
+	private ArrayList<String> adjectives=new ArrayList<String>();;
 	Random r= new Random();
 	public MadLib()
 	{
@@ -27,17 +27,17 @@ public class MadLib
 	public MadLib(String fileName)
 	{
 		//load stuff
-		verbs = new ArrayList<String>();
-		nouns = new ArrayList<String>();
-		adjectives = new ArrayList<String>();
+
 		loadNouns();
 		loadVerbs();
 		loadAdjectives();
+		 ArrayList<String> words = new ArrayList<String>();
 	
 		try{
 			Scanner file6 = new Scanner(new File(fileName));
 	
 			while (file6.hasNext()){
+				
 				if (file6.next().equals("#")){
 					getRandomNoun();
 				}
@@ -47,6 +47,7 @@ public class MadLib
 				if (file6.next().equals("&")){
 					getRandomAdjective();
 				}
+				
 			}
 	
 		
