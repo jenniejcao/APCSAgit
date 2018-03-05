@@ -53,7 +53,7 @@ public class MadLib
 				}
 				
 			}
-	
+	file6.close();
 		
 		}
 		catch(Exception e)
@@ -73,7 +73,7 @@ public class MadLib
 				
 			}
 
-		
+		file2.close();
 		}
 		catch(Exception e)
 		{
@@ -93,7 +93,7 @@ public class MadLib
 			}
 
 	
-	
+	file3.close();
 		}
 		catch(Exception e)
 		{
