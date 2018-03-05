@@ -33,19 +33,23 @@ public class MadLib
 	
 		try{
 			Scanner file6 = new Scanner(new File(fileName));
-	
-			while (file6.hasNext()){
-				if (file6.next().equals("#")){
-					System.out.print(getRandomNoun());
+			boolean set= true;
+			while (set) {
+				String mystring=file6.next();
+				if (!file6.hasNext()){
+					set=false;
 				}
-				else if (file6.next().equals("@")){
-					System.out.print(getRandomVerb());
+				if (mystring.equals("#")){
+					System.out.print(getRandomNoun()+" ");
 				}
-				else if (file6.next().equals("&")){
-					System.out.print(getRandomAdjective());
+				else if (mystring.equals("@")){
+					System.out.print(getRandomVerb()+" ");
 				}
-				else{
-					System.out.print(file6.next());
+				else if (mystring.equals("&")){
+					System.out.print(getRandomAdjective()+" ");
+				}
+				else if (file6.hasNext()){
+					System.out.print(mystring+" ");
 				}
 				
 			}
@@ -103,7 +107,7 @@ public class MadLib
 			Scanner file4 = new Scanner(new File("adjectives.dat"));
 		
 			while (file4.hasNext()){
-				nouns.add(file4.next());
+				adjectives.add(file4.next());
 	
 			}
 	
