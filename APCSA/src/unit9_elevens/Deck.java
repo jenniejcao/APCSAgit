@@ -13,7 +13,6 @@ public class Deck {
 	/**
 	 * cards contains all the cards in the deck.
 	 */
-	//private List<Card> cards;
 	
 	//Unit 9 - Array version of the Deck
 	private Card[] cards;
@@ -92,7 +91,7 @@ public class Deck {
 	public void shuffle() {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 4 *** */
 		int j;
-		int [] shuffled = new int[size];
+		
 		for (int k=size-1; k>0; k--){
 			Random r= new Random();
 			j=r.nextInt(k);

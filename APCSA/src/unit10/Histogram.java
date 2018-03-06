@@ -54,6 +54,16 @@ public class Histogram
 				file.add(filestring.charAt(i));
 			}
 		
+		count = new ArrayList<Integer>(letters.size());
+		for (int i=0; i<letters.size(); i++){
+			int counter=0;
+			for (int j=0; j<file.size();j++){
+				if (file.get(j)==letters.get(i)){
+					counter++;
+				}
+			}
+			count.add(counter);
+		}
 			mostFrequent();
 			leastFrequent();
 			
@@ -64,15 +74,28 @@ public class Histogram
 
 	public char mostFrequent()
 	{
-
-		return '#';
+		int holder=count.get(0);
+		for (int i=1; i<count.size(); i++){
+			if (holder<count.get(i)){
+				holder=count.get(i);
+			}
+		}
+		char output = letters.get(count.indexOf(holder));
+	
+		return output;
 	}
 
 	public char leastFrequent()
 	{
+		int holder=count.get(0);
+		for (int i=1; i<count.size(); i++){
+			if (holder>count.get(i)){
+				holder=count.get(i);
+			}
+		}
+	char output = letters.get(count.indexOf(holder));
 
-
-		return '#';
+	return output;
 	}
 
 	public String toString()
