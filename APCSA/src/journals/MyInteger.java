@@ -97,12 +97,13 @@ public class MyInteger {
 	public static int parseInt(char[] arrayint){
 		int result = 0;
 		for (int i=arrayint.length-1; i>=0; i--){
-			result=(int) (result+(arrayint[i]*Math.pow(10, arrayint.length-1-i)));
+			result=(int) (result+(arrayint[i]*Math.pow(10, arrayint.length-i-1)));
 		}
 		return result;
 	}
 	public static int parseString(String input){
-		return Integer.valueOf(input);
+		char[]nums = input.toCharArray();
+		return parseInt(nums);
 		
 	}
 	public static void main(String[] args){
@@ -110,8 +111,10 @@ public class MyInteger {
 		System.out.println(test.isPrime());
 		System.out.println(MyInteger.isPrime(5));
 		System.out.print(test.equals(5));
-		char[] go = {1,2,3,4,5};
+		char[] go = {1,2,3,4,5,9,0};
 		System.out.println("\n"+MyInteger.parseInt(go));
+		System.out.println(MyInteger.isEven(4));
+		
 		
 	}
 	
