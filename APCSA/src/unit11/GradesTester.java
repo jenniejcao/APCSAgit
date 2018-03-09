@@ -8,7 +8,7 @@ public class GradesTester
 {
    public static void main( String args[] )
    {
-		Grades test = new Grades("5 - 90 85 95.5 77.5 88");
+		Grades test = new Grades("5 - 90 85 95.5 77.5 88 ");
 		out.println(test);
 		out.println("sum = " + test.getSum());	
 		out.println("num grades = " + test.getNumGrades());											
