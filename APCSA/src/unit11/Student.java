@@ -75,6 +75,6 @@ public class Student
 	
 	public String toString()
 	{
-		return myGrades.toString();
+		return getName()+" = "+myGrades.toString();
 	}	
 }

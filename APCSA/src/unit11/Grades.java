@@ -22,7 +22,6 @@ public class Grades
 	{
 		Scanner keyboard = new Scanner(values);
 		int num = keyboard.nextInt();
-		System.out.print(num+"\n");
 		gradeList = new Grade[num];
 		int i =0;
 		while (i<num){
