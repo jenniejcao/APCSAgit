@@ -1,30 +1,30 @@
-package unit11;
+package unit11_arraylist;
 import java.util.Arrays;
 import java.util.Scanner;
 import static java.lang.System.*;
 import static java.util.Arrays.*;
-
+import java.util.ArrayList;
 public class Class
 {
 	private String name;
-	private Student[] studentList;
+	private ArrayList<Student> studentList;
 	
 	public Class()
 	{
 		name="";
-		studentList=new Student[0];
+		studentList=new ArrayList<Student>();
 	}
 	
 	public Class(String classname, int stuCount)
 	{
 		name=classname;
-		studentList=new Student[stuCount];
+		studentList=new ArrayList<Student>(stuCount);
 	
 	}
 	
 	public void addStudent(int stuNum, Student s)
 	{
-		studentList[stuNum]=s;
+		studentList.add(stuNum, s);
 
 	}
 	
@@ -36,24 +36,24 @@ public class Class
 	public double getClassAverage()
 	{
 		double classAverage=0.0;
-		for (int i=0; i<studentList.length; i++){
+		for (int i=0; i<studentList.size(); i++){
 			classAverage+=getStudentAverage(i);
 		}
-		classAverage=classAverage/studentList.length;
+		classAverage=classAverage/studentList.size();
 
 		return classAverage;
 	}
 	
 	public double getStudentAverage(int stuNum)
 	{
-		return studentList[stuNum].getAverage();
+		return studentList.get(stuNum).getAverage();
 		
 	}
 
 	public double getStudentAverage(String stuName)
 	{
-		for (int i=0; i<studentList.length; i++){
-			if (studentList[i].getName().equals(stuName)){
+		for (int i=0; i<studentList.size(); i++){
+			if (studentList.get(i).getName().equals(stuName)){
 				return getStudentAverage(i);
 			}
 		}
@@ -63,14 +63,14 @@ public class Class
 	
 	public String getStudentName(int stuNum)
 	{
-		return studentList[stuNum].getName();
+		return studentList.get(stuNum).getName();
 	}
 
 	public String getStudentWithHighestAverage()
 	{
 		double high = Double.MIN_VALUE;
 		String hName ="";
-		for (int i=0; i<studentList.length; i++){
+		for (int i=0; i<studentList.size(); i++){
 			if (getStudentAverage(i)>high){
 				high=getStudentAverage(i);
 				hName=getStudentName(i);
@@ -84,7 +84,7 @@ public class Class
 	{
 		double low = Double.MAX_VALUE;
 		String lName ="";		
-		for (int i=0; i<studentList.length; i++){
+		for (int i=0; i<studentList.size(); i++){
 			if (getStudentAverage(i)<low){
 				low=getStudentAverage(i);
 				lName=getStudentName(i);
@@ -99,9 +99,9 @@ public class Class
 	public String getFailureList(double failingGrade)
 	{
 		String output="";
-		for (int i=0; i<studentList.length; i++){
+		for (int i=0; i<studentList.size(); i++){
 			if (getStudentAverage(i)<failingGrade){
-				output+=studentList[i].getName()+" ";
+				output+=studentList.get(i).getName()+" ";
 			}
 			
 		}
@@ -113,8 +113,8 @@ public class Class
 	public String toString()
 	{
 		String output=""+getClassName()+"\n";
-		for (int i=0; i<studentList.length; i++){
-			output+=studentList[i].toString()+"\t"+String.format("%.2f", studentList[i].getAverage())+"\n";
+		for (int i=0; i<studentList.size(); i++){
+			output+=studentList.get(i).toString()+"\t"+String.format("%.2f", studentList.get(i).getAverage())+"\n";
 		}
 		return output;
 	}  	

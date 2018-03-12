@@ -1,4 +1,4 @@
-package unit11;
+package unit11_arraylist;
 
 import java.util.Arrays;
 import java.util.Scanner;
