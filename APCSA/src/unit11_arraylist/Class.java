@@ -1,9 +1,7 @@
 package unit11_arraylist;
 import java.util.Arrays;
 import java.util.Scanner;
-
-import unit11.Student;
-
+import unit11_arraylist.Student;
 import static java.lang.System.*;
 import static java.util.Arrays.*;
 import java.util.ArrayList;
@@ -24,13 +22,13 @@ public class Class
 	public Class(String classname, int stuCount)
 	{
 		name=classname;
-		studentList=new ArrayList<Student>(stuCount);
+		studentList=new ArrayList<Student>();
 	
 	}
 	
-	public void addStudent(int stuNum, Student s)
+	public void addStudent(int stuNum, Student student)
 	{
-		studentList.add(stuNum,s);
+		studentList.add(student);
 
 	}
 	

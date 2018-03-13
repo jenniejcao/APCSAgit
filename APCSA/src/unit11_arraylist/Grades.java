@@ -28,7 +28,7 @@ public class Grades
 		while (i<num){
 			if (keyboard.hasNextDouble()){
 				Grade test = new Grade(keyboard.nextDouble());
-				gradeList.add(i,test);
+				gradeList.add(test);
 			}
 			else{
 				keyboard.next();
