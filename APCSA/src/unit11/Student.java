@@ -73,8 +73,12 @@ public class Student implements Comparable<Student>
 		return  myGrades.getLowGrade();	
 	}
 	public int compareTo(Student d){
-		if (getAverage()-d.getAverage()>0) return 1;
-		else if(getAverage()-d.getAverage()==0) return 0;
+		if (getAverage()-d.getAverage()>0) {
+			return 1;
+		}
+		else if(getAverage()-d.getAverage()==0) {
+			return 0;
+		}
 		return -1;
 	}
 	public boolean equals(Student s){
