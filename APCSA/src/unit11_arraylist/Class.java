@@ -1,9 +1,15 @@
 package unit11_arraylist;
 import java.util.Arrays;
 import java.util.Scanner;
+
+import unit11.Student;
+
 import static java.lang.System.*;
 import static java.util.Arrays.*;
 import java.util.ArrayList;
+import java.util.Collections;
+
+
 public class Class
 {
 	private String name;
@@ -24,7 +30,7 @@ public class Class
 	
 	public void addStudent(int stuNum, Student s)
 	{
-		studentList.add(stuNum, s);
+		studentList.add(stuNum,s);
 
 	}
 	
@@ -70,27 +76,34 @@ public class Class
 	{
 		double high = Double.MIN_VALUE;
 		String hName ="";
+		/*
 		for (int i=0; i<studentList.size(); i++){
 			if (getStudentAverage(i)>high){
 				high=getStudentAverage(i);
 				hName=getStudentName(i);
 			}
-		}
+		} */
+		Collections.sort(studentList);
+		hName=studentList.get(studentList.size()-1).getName();
 		
 		return hName;
 	}
 
 	public String getStudentWithLowestAverage()
-	{
+	{ 
 		double low = Double.MAX_VALUE;
 		String lName ="";		
+		/*
 		for (int i=0; i<studentList.size(); i++){
 			if (getStudentAverage(i)<low){
 				low=getStudentAverage(i);
 				lName=getStudentName(i);
 			}
+			
 		}
-
+		*/
+		Collections.sort(studentList);
+		lName=studentList.get(0).getName();
 
 
 		return lName;
@@ -111,7 +124,7 @@ public class Class
 	}
 	
 	public String toString()
-	{
+	{	Collections.sort(studentList);
 		String output=""+getClassName()+"\n";
 		for (int i=0; i<studentList.size(); i++){
 			output+=studentList.get(i).toString()+"\t"+String.format("%.2f", studentList.get(i).getAverage())+"\n";

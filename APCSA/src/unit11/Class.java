@@ -3,7 +3,7 @@ import java.util.Arrays;
 import java.util.Scanner;
 import static java.lang.System.*;
 import static java.util.Arrays.*;
-
+import java.util.Collections.*;
 public class Class
 {
 	private String name;
@@ -20,6 +20,13 @@ public class Class
 		name=classname;
 		studentList=new Student[stuCount];
 	
+	}
+	public Student[] giveStudents(){
+		return studentList;
+	}
+	public static Student[] sort(Class x){
+		Arrays.sort(x.giveStudents());
+		return x.giveStudents();
 	}
 	
 	public void addStudent(int stuNum, Student s)
@@ -70,12 +77,15 @@ public class Class
 	{
 		double high = Double.MIN_VALUE;
 		String hName ="";
+		/*
 		for (int i=0; i<studentList.length; i++){
 			if (getStudentAverage(i)>high){
 				high=getStudentAverage(i);
 				hName=getStudentName(i);
 			}
-		}
+		} */
+		Arrays.sort(giveStudents());
+		hName=studentList[studentList.length-1].getName();
 		
 		return hName;
 	}
@@ -83,14 +93,16 @@ public class Class
 	public String getStudentWithLowestAverage()
 	{
 		double low = Double.MAX_VALUE;
-		String lName ="";		
+		String lName ="";	
+		/*
 		for (int i=0; i<studentList.length; i++){
 			if (getStudentAverage(i)<low){
 				low=getStudentAverage(i);
 				lName=getStudentName(i);
 			}
-		}
-
+		} */
+		Arrays.sort(giveStudents());
+		lName=studentList[0].getName();
 
 
 		return lName;

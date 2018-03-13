@@ -4,7 +4,7 @@ import java.util.Scanner;
 import static java.lang.System.*;
 import static java.util.Arrays.*;
 
-public class Student
+public class Student implements Comparable
 {
 	private String myName;
 	private Grades myGrades;
@@ -72,7 +72,22 @@ public class Student
 	{
 		return  myGrades.getLowGrade();	
 	}
-	
+	public int compareTo(Object s){
+		Student temp=(Student)s;
+		if(this.getAverage()-temp.getAverage()>0)
+			return (int)Math.ceil(this.getAverage()-temp.getAverage());
+		if(this.getAverage()-temp.getAverage()<0)
+			return (int)Math.floor(this.getAverage()-temp.getAverage());
+		return 0;
+
+	}
+	public boolean equals(Object s){
+		Student temp=(Student) s;
+		if(this.getAverage()==temp.getAverage()){
+			return true;
+		}
+		return false;
+	}
 	public String toString()
 	{
 		return getName()+" = "+myGrades.toString();

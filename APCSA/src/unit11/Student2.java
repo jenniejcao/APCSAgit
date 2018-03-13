@@ -3,8 +3,9 @@ import java.util.Arrays;
 import java.util.Scanner;
 import static java.lang.System.*;
 import static java.util.Arrays.*;
+import java.util.ArrayList;
 
-public class Student2 implements Comparable
+public class Student2 implements Comparable<Student2>
 {
 	private String myName;
 	private Grades myGrades;
@@ -47,6 +48,7 @@ public class Student2 implements Comparable
 	{
 		return myGrades.getNumGrades();
 	}
+	
 
 	public double getSum()
 	{
@@ -72,24 +74,26 @@ public class Student2 implements Comparable
 	{
 		return  myGrades.getLowGrade();	
 	}
-	public boolean equals( Object obj )
-	{
-		Student2 x = (Student2)obj;
-		if(x.getAverage()==((Student2)obj).getAverage()){
-			return true;		
+	public Grade[] giveGrades(){
+		return myGrades.giveGrades();
 		}
-
+	
+	public int compareTo(Student2 d){
+		if (getAverage()-d.getAverage()>0) return 1;
+		else if(getAverage()-d.getAverage()==0) return 0;
+		return -1;
+	}
+	public boolean equals(Student2 s){
+		Student2 temp=(Student2) s;
+		if(this.getAverage()==temp.getAverage()){
+			return true;
+		}
 		return false;
 	}
-	public int compareTo(Object obj){
-		Student2 x = (Student2)obj;
-		return Double.compare(x.getAverage(), ((Student2) obj).getAverage());
-		
-	}
-	
 	
 	public String toString()
 	{
 		return getName()+" = "+myGrades.toString();
-	}	
+	}
+
 }

@@ -85,6 +85,9 @@ public class Grades
 	{
 		return gradeList.length;
 	}
+	public Grade[] giveGrades(){
+		return gradeList;
+		}
 	
 	public String toString()
 	{
