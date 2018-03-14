@@ -3,9 +3,9 @@ import static java.lang.System.*;
 
 public class Monster implements Comparable
 {
-	private int myWeight;
-	private int myHeight;
-	private int myAge;
+	private int myWeight=0;
+	private int myHeight=0;
+	private int myAge=0;
 
 	//write a default Constructor
 	public Monster(){
