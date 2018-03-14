@@ -9,7 +9,6 @@ public class Monster implements Comparable
 
 	//write a default Constructor
 	public Monster(){
-		
 	}
 
 	//write an initialization constructor with an int parameter ht
@@ -58,7 +57,7 @@ public class Monster implements Comparable
 	//creates a new copy of this Object
 	public Object clone()
 	{
-	   return new Monster();
+	   return new Monster(myHeight, myWeight, myAge);
 	}
 
 	public boolean equals( Object obj )
