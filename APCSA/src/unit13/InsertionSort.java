@@ -9,8 +9,7 @@ class InsertionSort
 
 	public InsertionSort()
 	{
-
-
+	
 
 	}
 
@@ -18,29 +17,26 @@ class InsertionSort
 	public void add( String  word)
 	{
 		int loc = 0;
-
-
-
-
-
-
-
-
+		list.add(word);
+		toString();
 	}
 
 
 	public void remove(String word)
 	{
-
-
-
-
+	
+		list.remove(word);
+		toString();
 
 
 	}
 
 	public String toString()
 	{
-		return "";
+		String output="";
+		for (String i:list){
+			output+=i+" ";
+		}
+		return output;
 	}
 }
