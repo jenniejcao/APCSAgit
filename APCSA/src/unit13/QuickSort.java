@@ -7,45 +7,48 @@ public class QuickSort
 	private static int passCount;
 
 	public static void quickSort(Comparable[] list)
-	{
-
-	}
+	{	passCount=0;
+		int low=0;
+		int high=list.length-1;
+		quickSort(list, low, high);
+	}	
 
 
 	private static void quickSort(Comparable[] list, int low, int high)
-	{
-		int l = low;
-		int h = high;
-		while (l<h){
-			int split = partition(list, l, h);
-			quickSort(list, l, split);
-			quickSort(list, split+1, h);
+	{ 
+		
+		if(low>=high){
+			return;
+			
 		}
-
+		System.out.println("pass "+passCount++ 
+				+" "+Arrays.toString(list));
+		int split = partition(list, low, high);
+		quickSort(list, low, split);
+		quickSort(list, split+1, high);
+		
 
 	}
 
 
 	private static int partition(Comparable[] list, int low, int high)
 	{
-		int pivot = (int) list[0];
+		
+		Comparable pivot =  list[low];
 		int bot=low-1;
 		int top=high+1;
 		while (bot<top){
-			while (bot+1<pivot &&top-1>pivot){
-				if (bot>top){
+			while (list[--top].compareTo(pivot)>0);
+			while (list[++bot].compareTo(pivot)<0);
+				if (bot>=top){
 					return top;
 				}
+				Comparable holder= list[bot];
+				list[bot]=list[top];
+				list[top]=holder;
 				
-			}
+			
 		}
-
-
-
-
-
-
-
 
 
 
