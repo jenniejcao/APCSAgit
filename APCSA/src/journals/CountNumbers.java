@@ -12,42 +12,43 @@ public class CountNumbers {
 		    }
 		    return out;
 		  }
-	 public static boolean binarySearch(int look,int[] search) 
+	 public static int binarySearch(int look,int[] search) 
 	   {
-	      	int size = search.length-1;
 	         int low = 0;
-	         int high = size - 1;
+	         int high = search.length - 1;
 	        
 	         while(high >= low) {
-	             int middle = (low + high) / 2;
+	             int middle = (int) (low + high) / 2;
 	             if(search[middle] == look) {
-	                 return true;
+	                 return middle;
 	             }
-	             if(search[middle] < look) {
+	             else if(search[middle] < look) {
 	                 low = middle + 1;
 	             }
-	             if(search[middle] > look) {
+	             else if(search[middle] > look) {
 	                 high = middle - 1;
 	             }
 	        }
-	        return false;
+	        return -1;
 	   }
 	public static void main(String[] args) {
-	    int[] toRead = new int[10000];
-	    for(int i =0;i<10000;i++){
-	      toRead[i] = (int)(Math.random()*10000);
+		for (int j=1; j<=10 ; j++){
+	    int[] go = new int[100];
+	    for(int i =0;i<100;i++){
+	      go[i] = (int)(Math.random()*100);
 	    }
 	    long startTime = System.nanoTime();
-	    int[] occurences=linearSearch(toRead);
+	    int[] occurences=linearSearch(go);
 	    long endTime = System.nanoTime();
 	    System.out.println((endTime-startTime)/1000000 +"ms");
 	    System.out.println(Arrays.toString(occurences));
 	    
 	    startTime=System.nanoTime();
-	    System.out.println(binarySearch(5,toRead));
+	    System.out.println(binarySearch(2,go));
 	    endTime=System.nanoTime();
 	    System.out.println((endTime-startTime)/1000000 +"ms");
-	   
+	    System.out.println("");
+		}
 	  }
 }
 

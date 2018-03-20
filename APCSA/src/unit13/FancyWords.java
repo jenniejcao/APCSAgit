@@ -37,7 +37,7 @@ public class FancyWords
 		for (int i=0; i<= max; i++){
 			for (int j=wordRay.length-1; j>=0; j--){
 				char[] chararray = wordRay[j].toCharArray();
-				output+=chararray[wordRay[j].length()-1-i];
+				output=output+chararray[wordRay[j].length()-i-1];
 			}
 			output+="\n";
 		}

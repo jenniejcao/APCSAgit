@@ -17,15 +17,18 @@ public class QuickSort
 	private static void quickSort(Comparable[] list, int low, int high)
 	{ 
 		
-		if(low>=high){
-			return;
+		if(low<high){
+			int split = partition(list, low, high);
+			System.out.println("pass "+passCount++
+					+" "+Arrays.toString(list));
+			
+			quickSort(list, low, split);
+			quickSort(list, split+1, high);
+			
+			
 			
 		}
-		System.out.println("pass "+passCount++ 
-				+" "+Arrays.toString(list));
-		int split = partition(list, low, high);
-		quickSort(list, low, split);
-		quickSort(list, split+1, high);
+		
 		
 
 	}
@@ -54,4 +57,16 @@ public class QuickSort
 
 		return 0;
 	}
+
+	public static void main(String args[])
+	{
+		QuickSort.quickSort(new Comparable[]{9,5,3,2});
+
+
+		QuickSort.quickSort(new Comparable[]{19,52,3,2,7,21});
+
+
+		QuickSort.quickSort(new Comparable[]{68,66,11,2,42,31});
+	}
+
 }
