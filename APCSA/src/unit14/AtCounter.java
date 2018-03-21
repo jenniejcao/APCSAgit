@@ -28,25 +28,14 @@ public class AtCounter
 		//add in recursive code to count up the # of @s connected
 		//start checking at spot [r,c]
 		
-		if (((r>=0&&r<=10))&&(c<=10&&c>=0)&&atMat[r][c]=='@'){
+		if (((r>=0&&r<10))&&(c<10&&c>=0)&&atMat[r][c]=='@'){
 			atMat[r][c]='-';
 			atCount++;
-			if ( r<10&&atMat[r+1][c]=='@'){
-				System.out.println("go1");
-				return countAts(r,c);
-			}
-			if (r>0&&atMat[r-1][c]=='@'){
-				System.out.println("go2");
-				return countAts(r,c);
-			}
-			if (c<10&&atMat[r][c+1]=='@'){
-				System.out.println("go3");
-				return countAts(r,c);
-			}
-			if (c>0&&atMat[r][c-1]=='@'){
-				System.out.println("go4");
-				return countAts(r,c);
-			}
+			countAts(r+1,c);
+			countAts(r-1, c);
+			countAts(r,c+1);
+			countAts(r,c-1);
+			
 		}
 		
 		return atCount;
