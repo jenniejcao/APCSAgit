@@ -39,7 +39,7 @@ public class QuickSort
 		
 		Comparable pivot =  list[low];
 		int bot=low-1;
-		int top=high+1;
+		int top=1+high;
 		while (bot<top){
 			while (list[--top].compareTo(pivot)>0);
 			while (list[++bot].compareTo(pivot)<0);

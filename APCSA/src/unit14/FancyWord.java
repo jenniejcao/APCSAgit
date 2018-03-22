@@ -25,17 +25,13 @@ public class FancyWord
 		   mat[0][i]=s.charAt(i);
 		   mat[s.length()-1][i]=s.charAt(i);
 	   }
+	   
 	   for (int i=1; i<s.length()-1; i++){
 		  
 			   mat[i][i]=s.charAt(i);
-			   mat[i][s.length()-i-1]=s.charAt(s.length()-i-1);
+			   mat[i][s.length()-1-i]=s.charAt(s.length()-1-i);
 		   
 	   }
-	
-
-
-
-
 	}
 
 	public String toString()
