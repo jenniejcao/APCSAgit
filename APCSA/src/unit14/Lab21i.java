@@ -9,11 +9,11 @@ public class Lab21i
 	public static void main( String args[] ) throws IOException
 	{
 		Scanner file = new Scanner (new File("Lab21i.dat"));
-		int size = file.nextInt();
-		file.nextLine();
-		for (int i=0; i<size; i++){
-			String go =file.nextLine();
-			Maze test = new Maze(go.length(),go);
+		while (file.hasNextLine()){
+			int size = file.nextInt();
+			file.nextLine();
+			String go = file.nextLine();
+			Maze test = new Maze(size, go);
 			System.out.println(test);
 		}
 		

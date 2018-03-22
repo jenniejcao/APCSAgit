@@ -24,6 +24,8 @@ public class Word2 implements Comparable <Word2>{
 		
 
 		return vowelCount;
+		
+		
 	}
 
 	public int compareTo(Word2 rhs)
