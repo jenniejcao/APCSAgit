@@ -65,6 +65,8 @@ public class ElevensBoard {
 	 * dealing some cards to this board.
 	 */
 	public void newGame() {
+		cards = new Card[BOARD_SIZE];
+		deck = new Deck(RANKS, SUITS, POINT_VALUES);
 		deck.shuffle();
 		dealMyCards();
 	}
@@ -186,6 +188,13 @@ public class ElevensBoard {
 	 */
 	public boolean isLegal(List<Integer> selectedCards) {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 9 *** */
+		if (selectedCards.size()==2 &&containsPairSum11(selectedCards)){
+			return true;
+		}
+		else if (selectedCards.size()==3 && containsJQK(selectedCards)){
+			return true;
+		}
+		return false;
 	}
 
 	/**
@@ -198,6 +207,13 @@ public class ElevensBoard {
 	 */
 	public boolean anotherPlayIsPossible() {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 9 *** */
+		int[] set = {0, 1, 2, 3, 4, 5, 6, 7, 8};
+		List<Integer> cardBoard = new ArrayList<Integer>();
+		for (int i : set) {
+			cardBoard.add(i);
+		}
+		
+		return containsJQK(cardBoard) || containsPairSum11(cardBoard);
 	}
 
 
@@ -218,8 +234,17 @@ public class ElevensBoard {
 	 * @return true if the board entries in selectedCards
 	 *              contain an 11-pair; false otherwise.
 	 */
-	private boolean containsPairSum11(List<Integer> selectedCards) {
+	private boolean containsPairSum11(List<Integer> selectedCards)
+	{
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 9 *** */
+		for (int first:selectedCards){
+			for (int second:selectedCards){
+				if (first != second && cards[first].pointValue()+cards[second].pointValue()==11){
+					return true;
+				}
+			}
+		}
+		return false;
 	}
 
 	/**
@@ -232,6 +257,17 @@ public class ElevensBoard {
 	 */
 	private boolean containsJQK(List<Integer> selectedCards) {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 9 *** */
+		boolean J=false;
+		boolean Q=false;
+		boolean K=false;
+		for (int i=0; i<selectedCards.size(); i++){
+			Card x = cards[selectedCards.get(i)];
+			if (x.rank() =="jack"){J=true;}
+			if (x.rank()=="queen"){Q=true;}
+			if (x.rank() =="king"){K=true;}
+			
+		}
+		return J&&(Q&&K);
 	}
 	public static void printCards(ElevensBoard board){
 		List<Integer> cIndexes=  board.cardIndexes();
