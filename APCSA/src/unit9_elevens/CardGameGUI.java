@@ -56,7 +56,7 @@ public class CardGameGUI extends JFrame implements ActionListener {
 	private static final int LABEL_HEIGHT_INC = 35;
 
 	/** The board (Board subclass). */
-	private ElevensBoard board;
+	private Board board;
 
 	/** The main panel containing the game components. */
 	private JPanel panel;
@@ -87,10 +87,10 @@ public class CardGameGUI extends JFrame implements ActionListener {
 
 	/**
 	 * Initialize the GUI.
-	 * @param gameBoard is a <code>Board</code> subclass.
+	 * @param board2 is a <code>Board</code> subclass.
 	 */
-	public CardGameGUI(ElevensBoard gameBoard) {
-		board = gameBoard;
+	public CardGameGUI(Board board2) {
+		board = board2;
 		totalWins = 0;
 		totalGames = 0;
 

@@ -5,7 +5,7 @@ import java.util.ArrayList;
 /**
  * The ElevensBoard class represents the board in a game of Elevens.
  */
-public class ElevensBoard {
+public class ElevensBoard extends Board{
 
 	/**
 	 * The size (number of cards) on the board.
@@ -51,13 +51,17 @@ public class ElevensBoard {
 	 * Creates a new <code>ElevensBoard</code> instance.
 	 */
 	public ElevensBoard() {
+		super(BOARD_SIZE, RANKS, SUITS, POINT_VALUES);
+		
 		cards = new Card[BOARD_SIZE];
 		deck = new Deck(RANKS, SUITS, POINT_VALUES);
+		
 		if (I_AM_DEBUGGING) {
 			System.out.println(deck);
 			System.out.println("----------");
 		}
 		dealMyCards();
+		
 	}
 
 	/**
@@ -207,9 +211,8 @@ public class ElevensBoard {
 	 */
 	public boolean anotherPlayIsPossible() {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 9 *** */
-		int[] set = {0, 1, 2, 3, 4, 5, 6, 7, 8};
 		List<Integer> cardBoard = new ArrayList<Integer>();
-		for (int i : set) {
+		for (int i=0; i<=8; i++) {
 			cardBoard.add(i);
 		}
 		
