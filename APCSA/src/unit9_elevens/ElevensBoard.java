@@ -210,13 +210,15 @@ public class ElevensBoard extends Board{
 	 *         false otherwise.
 	 */
 	public boolean anotherPlayIsPossible() {
-		/* *** TO BE IMPLEMENTED IN ACTIVITY 9 *** */
-		List<Integer> cardBoard = new ArrayList<Integer>();
-		for (int i=0; i<=8; i++) {
-			cardBoard.add(i);
-		}
 		
-		return containsJQK(cardBoard) || containsPairSum11(cardBoard);
+		/* *** TO BE IMPLEMENTED IN ACTIVITY 9 *** */
+		//List<Integer> cardBoard = new ArrayList<Integer>();
+		//for (int i=0; i<=8; i++) {
+		//	cardBoard.add(i);
+		//}
+		return containsJQK(cardIndexes())||containsPairSum11(cardIndexes());
+		//return containsJQK(cardBoard) || containsPairSum11(cardBoard);
+		
 	}
 
 
