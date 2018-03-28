@@ -275,8 +275,8 @@ public class ElevensBoard extends Board{
 		return J&&(Q&&K);
 	}
 	public static void printCards(ElevensBoard board){
-		List<Integer> cIndexes=  board.cardIndexes();
-		for (Integer i: cIndexes){
+		List<Integer> cIndex=  board.cardIndexes();
+		for (Integer i: cIndex){
 			System.out.println(board.cardAt(i));
 		}
 	}
