@@ -21,6 +21,7 @@ public class Tester extends JFrame
 		PaddleTestTwo padTest = new PaddleTestTwo();
 		((Component)padTest).setFocusable(true);			
 		getContentPane().add(padTest);
+	
 				
 		setVisible(true);
 	}

@@ -2,7 +2,7 @@ package unit15_pong;
 import java.awt.Color;
 import java.awt.Graphics;
 
-public class Ball extends Block
+public class Ball extends Block implements Collidable
 {
 	private int xSpeed;
 	private int ySpeed;
@@ -65,10 +65,9 @@ public class Ball extends Block
    
 	public boolean equals(Object obj)
 	{
-
 		Ball ob = (Ball) obj;
-		if (ob.getX()==getX()&&ob.getY()==getY()&&ob.getHeight()==getHeight()&&ob.getWidth()==getWidth()&&ob.getColor()==getColor()&&ob.getXSpeed()==getXSpeed()&&ob.getYSpeed()==getYSpeed()){
-			return true;
+		if (ob.getXSpeed()==getXSpeed()&&ob.getYSpeed()==getYSpeed()){
+			return super.equals(ob);
 		}
 
 		return false;
@@ -89,4 +88,28 @@ public class Ball extends Block
 		return "x: "+getX()+" y: "+getY()+" width: "+getWidth()+" height: "+getHeight()+" color: "+getColor()+" xSpeed: "+getXSpeed()+" ySpeed:."
 				+ " "+getYSpeed();
 	}
+
+@Override
+public boolean didCollideLeft(Object obj) {
+	// TODO Auto-generated method stub
+	return false;
+}
+
+@Override
+public boolean didCollideRight(Object obj) {
+	// TODO Auto-generated method stub
+	return false;
+}
+
+@Override
+public boolean didCollideTop(Object obj) {
+	// TODO Auto-generated method stub
+	return false;
+}
+
+@Override
+public boolean didCollideBottom(Object obj) {
+	// TODO Auto-generated method stub
+	return false;
+}
 }
