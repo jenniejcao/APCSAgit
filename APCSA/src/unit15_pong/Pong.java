@@ -79,7 +79,8 @@ public class Pong extends Canvas implements KeyListener, Runnable
 
 
 		//see if ball hits left wall or right wall
-		if(!(ball.getX()>=leftPaddle.getX() && ball.getX()<=rightPaddle.getX()+rightPaddle.getWidth()))
+		//!(ball.getX()>=leftPaddle.getX() && ball.getX()<=rightPaddle.getX()+rightPaddle.getWidth())
+		if(!(ball.getX()>=leftPaddle.getX() && ball.getX()+ball.getWidth()<=rightPaddle.getX()+rightPaddle.getWidth()))
 		{
 			ball.setXSpeed(0);
 			ball.setYSpeed(0);
@@ -142,13 +143,14 @@ public class Pong extends Canvas implements KeyListener, Runnable
 			*/
 
 		
-		if (ball.didCollideLeft(leftPaddle) || ball.didCollideRight(rightPaddle)) {
+		if (ball.didCollideLeft(leftPaddle) || ball.didCollideRight(leftPaddle)
+				|| ball.didCollideLeft(rightPaddle) || ball.didCollideRight(rightPaddle)) {
 			ball.setXSpeed(-ball.getXSpeed());
 		}
-		if (ball.didCollideTop(leftPaddle) || ball.didCollideBottom(leftPaddle)
-				|| ball.didCollideTop(rightPaddle) || ball.didCollideBottom(rightPaddle)) {
-			ball.setYSpeed(-ball.getYSpeed());
-		}
+		 if (ball.didCollideTop(leftPaddle) || ball.didCollideBottom(leftPaddle)
+					|| ball.didCollideTop(rightPaddle) || ball.didCollideBottom(rightPaddle)) {
+				ball.setYSpeed(-ball.getYSpeed());
+			}
 
 		//see if the paddles need to be moved
 	

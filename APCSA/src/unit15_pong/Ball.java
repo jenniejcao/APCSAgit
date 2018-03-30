@@ -95,7 +95,7 @@ public class Ball extends Block implements Collidable
 public boolean didCollideLeft(Object obj) {
 	// TODO Auto-generated method stub
 	Paddle paddle = (Paddle)obj;
-	if (getX()<=paddle.getX()+paddle.getWidth()+Math.abs(getXSpeed())&&(getY()>=paddle.getY() && getY()<=paddle.getY()+paddle.getHeight())){
+	if (getX()+getWidth()>paddle.getX()&&getX()<=paddle.getX()+paddle.getWidth()&&(getY()>=paddle.getY() && getY()<=paddle.getY()+paddle.getHeight())){
 		return true;
 	}
 	return false;
@@ -105,7 +105,7 @@ public boolean didCollideLeft(Object obj) {
 public boolean didCollideRight(Object obj) {
 	// TODO Auto-generated method stub
 	Paddle paddle = (Paddle)obj;
-	if (getX()>=paddle.getX()+Math.abs(getXSpeed())&&(getY()>=paddle.getY() && getY()<=paddle.getY()+paddle.getHeight())){
+	if (getX()<paddle.getX()+paddle.getWidth()&&getX()>=paddle.getX()+getWidth()&&(getY()>=paddle.getY() && getY()<=paddle.getY()+paddle.getHeight())){
 		return true;
 	}
 	return false;
@@ -115,8 +115,9 @@ public boolean didCollideRight(Object obj) {
 public boolean didCollideTop(Object obj) {
 	// TODO Auto-generated method stub
 	Paddle paddle = (Paddle)obj;
-	if ((getY()>=paddle.getY() && getY()<=paddle.getY()+paddle.getHeight())
-			||getY()>=paddle.getY() && getY()<paddle.getY()+paddle.getHeight()){
+	if (getY()+getHeight()>paddle.getY() && getY() <= paddle.getY()+paddle.getHeight() && (getX()>=paddle.getX() && getX()+getWidth()<=paddle.getX()+paddle.getWidth())){
+	//if ((getY()>=paddle.getY() && getY()<=paddle.getY()+paddle.getHeight())
+		//	||getY()>=paddle.getY() && getY()<paddle.getY()+paddle.getHeight()){
 		return true;
 	}
 	return false;
@@ -126,8 +127,9 @@ public boolean didCollideTop(Object obj) {
 public boolean didCollideBottom(Object obj) {
 	// TODO Auto-generated method stub
 	Paddle paddle = (Paddle) obj;
-	if ((getY()>=paddle.getY() && getY()<=paddle.getY()+paddle.getHeight())
-			||getY()+getHeight()>=paddle.getY()&&getY()+getHeight()<paddle.getY()+paddle.getHeight()){
+	if (getY()+getHeight()>paddle.getY() && getY() <= paddle.getY()+paddle.getHeight() && (getX()>=paddle.getX() && getX()+getWidth()<=paddle.getX()+paddle.getWidth())){
+	//if ((getY()>=paddle.getY() && getY()<=paddle.getY()+paddle.getHeight())
+			//||getY()+getHeight()>=paddle.getY()&&getY()+getHeight()<paddle.getY()+paddle.getHeight()){
 				return true;
 						
 			}
