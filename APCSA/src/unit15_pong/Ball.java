@@ -59,7 +59,7 @@ public class Ball extends Block implements Collidable
 		//setY
       setY(getY()+ySpeed);
 		//draw the ball at its new location
-      draw(window,Color.BLACK);
+      draw(window);
       
    }
    
@@ -89,27 +89,48 @@ public class Ball extends Block implements Collidable
 				+ " "+getYSpeed();
 	}
 
+	
+	
 @Override
 public boolean didCollideLeft(Object obj) {
 	// TODO Auto-generated method stub
+	Paddle paddle = (Paddle)obj;
+	if (getX()<=paddle.getX()+paddle.getWidth()+Math.abs(getXSpeed())&&(getY()>=paddle.getY() && getY()<=paddle.getY()+paddle.getHeight())){
+		return true;
+	}
 	return false;
 }
 
 @Override
 public boolean didCollideRight(Object obj) {
 	// TODO Auto-generated method stub
+	Paddle paddle = (Paddle)obj;
+	if (getX()>=paddle.getX()+Math.abs(getXSpeed())&&(getY()>=paddle.getY() && getY()<=paddle.getY()+paddle.getHeight())){
+		return true;
+	}
 	return false;
 }
 
 @Override
 public boolean didCollideTop(Object obj) {
 	// TODO Auto-generated method stub
+	Paddle paddle = (Paddle)obj;
+	if ((getY()>=paddle.getY() && getY()<=paddle.getY()+paddle.getHeight())
+			||getY()>=paddle.getY() && getY()<paddle.getY()+paddle.getHeight()){
+		return true;
+	}
 	return false;
 }
 
 @Override
 public boolean didCollideBottom(Object obj) {
 	// TODO Auto-generated method stub
+	Paddle paddle = (Paddle) obj;
+	if ((getY()>=paddle.getY() && getY()<=paddle.getY()+paddle.getHeight())
+			||getY()+getHeight()>=paddle.getY()&&getY()+getHeight()<paddle.getY()+paddle.getHeight()){
+				return true;
+						
+			}
 	return false;
 }
 }
