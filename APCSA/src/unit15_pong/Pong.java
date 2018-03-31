@@ -27,16 +27,18 @@ public class Pong extends Canvas implements KeyListener, Runnable
 		//set up all variables related to the game
 	
 		//instantiate a Ball
-		ball = new Ball(350,200, 20, 20);
+		ball = new Ball(350,200);
+		//ball= new BlinkyBall(350,200);
+		//ball= new SpeedUpBall(350,200);
 		
 		
 		//instantiate a left Paddle
-		leftPaddle = new Paddle(60, 200, 30, 100, Color.RED, 5);
+		leftPaddle = new Paddle(50, 200, 20, 100, Color.RED, 5);
 		
 		
 		
 		//instantiate a right Paddle
-		rightPaddle = new Paddle(720,200, 30, 100, Color.RED, 5);
+		rightPaddle = new Paddle(730,200, 20, 100, Color.RED, 5);
 		
 
 
@@ -103,7 +105,9 @@ public class Pong extends Canvas implements KeyListener, Runnable
 			
 			
 			ball.draw(graphToBack, Color.WHITE);
-			ball = new Ball(350,200, 20, 20);
+			ball = new Ball(350,200);
+			//ball= new BlinkyBall(350,200);
+			//ball= new SpeedUpBall(350,200);
 			ball.moveAndDraw(graphToBack);
 			
 		}
@@ -141,7 +145,7 @@ public class Pong extends Canvas implements KeyListener, Runnable
 			}
 		}
 			*/
-
+/*
 		
 		if (ball.didCollideLeft(leftPaddle) || ball.didCollideRight(leftPaddle)
 				|| ball.didCollideLeft(rightPaddle) || ball.didCollideRight(rightPaddle)) {
@@ -151,7 +155,16 @@ public class Pong extends Canvas implements KeyListener, Runnable
 					|| ball.didCollideBottom(leftPaddle) || ball.didCollideBottom(rightPaddle)) {
 				ball.setYSpeed(-ball.getYSpeed());
 			}
+*/
 
+		if (ball.didCollideLeft(leftPaddle)|| ball.didCollideRight(rightPaddle)){
+			ball.setXSpeed(-ball.getXSpeed());}
+		else if (ball.didCollideTop(leftPaddle) || ball.didCollideTop(rightPaddle)
+				|| ball.didCollideBottom(leftPaddle) || ball.didCollideBottom(rightPaddle)) {
+			//ball.setXSpeed(-ball.getXSpeed());
+			ball.setYSpeed(-ball.getYSpeed());
+		}
+		
 		//see if the paddles need to be moved
 	
 
