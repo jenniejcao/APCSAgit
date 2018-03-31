@@ -47,8 +47,10 @@ class SpeedUpBall extends Ball
    public void setXSpeed( int xSpd )
    {
 	   int plus=1;
-	   super.setXSpeed(xSpd+plus);
-	   plus++;
+	   if (xSpd<0){
+		   plus=-1;
+	   }
+	  super.setXSpeed(xSpd+plus);
 
 
 
@@ -58,9 +60,10 @@ class SpeedUpBall extends Ball
    public void setYSpeed( int ySpd )
    {
 	   int plus=1;
-	   super.setYSpeed(ySpd+plus);
-	   plus++;
-
+	   if (ySpd<0){
+		   plus=-1;
+	   }
+	  super.setYSpeed(ySpd+plus);
 
    }
 }

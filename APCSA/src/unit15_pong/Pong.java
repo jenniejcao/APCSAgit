@@ -27,16 +27,16 @@ public class Pong extends Canvas implements KeyListener, Runnable
 		//set up all variables related to the game
 	
 		//instantiate a Ball
-		ball = new Ball(350,200);
+		ball = new Ball(350,200, 20, 20);
 		
 		
 		//instantiate a left Paddle
-		leftPaddle = new Paddle(10, 200, 20, 100, Color.RED, 5);
+		leftPaddle = new Paddle(60, 200, 30, 100, Color.RED, 5);
 		
 		
 		
 		//instantiate a right Paddle
-		rightPaddle = new Paddle(760,200, 20, 100, Color.RED, 5);
+		rightPaddle = new Paddle(720,200, 30, 100, Color.RED, 5);
 		
 
 
@@ -79,8 +79,8 @@ public class Pong extends Canvas implements KeyListener, Runnable
 
 
 		//see if ball hits left wall or right wall
-		//!(ball.getX()>=leftPaddle.getX() && ball.getX()<=rightPaddle.getX()+rightPaddle.getWidth())
-		if(!(ball.getX()>=leftPaddle.getX() && ball.getX()+ball.getWidth()<=rightPaddle.getX()+rightPaddle.getWidth()))
+//!(ball.getX()>=leftPaddle.getX() && ball.getX()+ball.getWidth()<=rightPaddle.getX()+rightPaddle.getWidth())
+		if(!(ball.getX()>0 && ball.getX()+ball.getWidth()<getWidth()))
 		{
 			ball.setXSpeed(0);
 			ball.setYSpeed(0);
@@ -103,14 +103,14 @@ public class Pong extends Canvas implements KeyListener, Runnable
 			
 			
 			ball.draw(graphToBack, Color.WHITE);
-			ball = new Ball(350,200);
+			ball = new Ball(350,200, 20, 20);
 			ball.moveAndDraw(graphToBack);
 			
 		}
 
 		
 		//see if the ball hits the top or bottom wall 
-		if (!(ball.getY()>=0 && ball.getY()<=550)){
+		if (!(ball.getY()>=0 && ball.getY()<=getHeight())){
 			ball.setYSpeed(-ball.getYSpeed());
 		}
 /*
@@ -147,8 +147,8 @@ public class Pong extends Canvas implements KeyListener, Runnable
 				|| ball.didCollideLeft(rightPaddle) || ball.didCollideRight(rightPaddle)) {
 			ball.setXSpeed(-ball.getXSpeed());
 		}
-		 if (ball.didCollideTop(leftPaddle) || ball.didCollideBottom(leftPaddle)
-					|| ball.didCollideTop(rightPaddle) || ball.didCollideBottom(rightPaddle)) {
+		 if (ball.didCollideTop(leftPaddle) || ball.didCollideTop(rightPaddle)
+					|| ball.didCollideBottom(leftPaddle) || ball.didCollideBottom(rightPaddle)) {
 				ball.setYSpeed(-ball.getYSpeed());
 			}
 
