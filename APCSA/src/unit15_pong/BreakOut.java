@@ -24,10 +24,10 @@ public class BreakOut extends Canvas implements KeyListener, Runnable
 	private Paddle paddle;
 	private boolean[] keys;
 	private BufferedImage back;
-	private Wall wallL;
-	private Wall wallR;
-	private Wall wallT;
-	private Wall wallB;
+	private Wall wallLeft;
+	private Wall wallRight;
+	private Wall wallTop;
+	private Wall wallBottom;
 
 	private Block block1;
 	private Block block2;
@@ -37,13 +37,8 @@ public class BreakOut extends Canvas implements KeyListener, Runnable
 	public BreakOut()
 	{
 		//set up all variables related to the game
-		ball = new Ball(300, 20, 10, 10, Color.RED, 3, 3);		
-		//blinky and speedUp balls commented out
-	//ball = new BlinkyBall(300, 20, 10, 10, Color.RED, 1, 1);		
-		//ball = new SpeedUpBall(300, 20, 10, 10, Color.RED, 1, 1);		
-
-		paddle = new Paddle(20,470,100,30, Color.GREEN,5);
-		
+		ball = new Ball(300, 20, 10, 10, Color.BLACK, 3, 3);		
+		paddle = new Paddle(760,300,100,30, Color.GREEN,5);
 		block1 = new Block (50,150,100,30);
 		block2 = new Block (250,150,100,30);
 
@@ -51,10 +46,10 @@ public class BreakOut extends Canvas implements KeyListener, Runnable
 		block4 = new Block (650,150,100,30);
 
 		// set up walls
-		wallL = new Wall();
-		wallR = new Wall(760,0);
-		wallB = new Wall(20,530,800,20);
-		wallT = new Wall(20,0,800,20);
+		wallLeft = new Wall();
+		wallRight = new Wall(760,0);
+		wallBottom = new Wall(20,530,800,20);
+		wallTop = new Wall(20,0,800,20);
 	
 		
 		keys = new boolean[4];
@@ -92,10 +87,10 @@ public class BreakOut extends Canvas implements KeyListener, Runnable
 		ball.moveAndDraw(graphToBack);
 	
 		paddle.draw(graphToBack);
-		wallL.draw(graphToBack);
-		wallR.draw(graphToBack);
-		wallT.draw(graphToBack);
-		wallB.draw(graphToBack);
+		wallLeft.draw(graphToBack);
+		wallRight.draw(graphToBack);
+		wallTop.draw(graphToBack);
+		wallBottom.draw(graphToBack);
 		
 		block1.draw(graphToBack);		
 		block2.draw(graphToBack);
@@ -105,12 +100,12 @@ public class BreakOut extends Canvas implements KeyListener, Runnable
 		
 		//see if ball hits left wall or right wall
 	//	if((ball.getX()<=20) || ball.getX()>=770)
-		if (ball.didCollideLeft(wallL) || ball.didCollideRight(wallR))
+		if (ball.didCollideLeft(wallLeft) || ball.didCollideRight(wallRight))
 		{
 			//ball.setXSpeed(0);
 			//ball.setYSpeed(0);
 
-			if (ball.didCollideLeft(wallL)){
+			if (ball.didCollideLeft(wallLeft)){
 			//if (ball.getX()<=leftPaddle.getX() + leftPaddle.getWidth()){
 				//graphToBack.setColor(Color.WHITE);
 				//graphToBack.drawString("Right Paddle: "+RightScore, 300, 500);
@@ -119,7 +114,7 @@ public class BreakOut extends Canvas implements KeyListener, Runnable
 
 				
 			}
-			 if (ball.didCollideRight(wallR)){
+			 if (ball.didCollideRight(wallRight)){
 				//graphToBack.setColor(Color.WHITE);
 				//graphToBack.drawString("Left Paddle: "+LeftScore, 200, 500);
 					ball.setXSpeed(-ball.getXSpeed());
@@ -143,7 +138,7 @@ public class BreakOut extends Canvas implements KeyListener, Runnable
 			ball.setYSpeed(ball.getYSpeed()+1);*/
 			
 		}
-if (ball.didCollideBottom(wallB)) {
+if (ball.didCollideBottom(wallBottom)) {
 	ball.setXSpeed(0);
 	ball.setYSpeed(0);
 	
@@ -169,7 +164,7 @@ if (ball.didCollideBottom(wallB)) {
 		ball.setYSpeed(-ball.getYSpeed());
 		}*/
 		
-		if (ball.didCollideBottom(wallT) || ball.didCollideTop(wallB)) {
+		if (ball.didCollideBottom(wallTop) || ball.didCollideTop(wallBottom)) {
 			ball.setYSpeed(-ball.getYSpeed());
 		}		
 		if (ball.didCollideRight(paddle) || ball.didCollideLeft(paddle)) {

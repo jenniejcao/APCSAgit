@@ -90,7 +90,7 @@ public class Ball extends Block implements Collidable
 				+ " "+getYSpeed();
 	}
 
-	/*
+	
 
 	@Override
 	public boolean didCollideLeft(Object obj) {
@@ -137,7 +137,8 @@ public class Ball extends Block implements Collidable
 				}
 		return false;
 	}
-	*/
+	
+	/*
 	@Override
 	public boolean didCollideRight(Object obj){
 		Block paddle = (Block)obj;
@@ -169,4 +170,5 @@ public class Ball extends Block implements Collidable
 		}
 		return false;
 	}
+	*/
 }
