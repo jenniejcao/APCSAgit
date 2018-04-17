@@ -67,15 +67,12 @@ public class SimplePicture implements DigitalPicture
   */
  public SimplePicture(String fileName)
  {
-   
+	   //String file = "src\\pixlab\\images\\" + fileName;
+	  String file = "src/pixlab/images/" + fileName;
+
+
    // load the picture into the buffered image 
-   //load(fileName);
-
-	   String file = "src\\pixlab\\pixlab.images\\" + fileName;
-	   // load the picture into the buffered image 
 	   load(file);
-
-	 
    
  }
  
@@ -667,17 +664,14 @@ public class SimplePicture implements DigitalPicture
   */
  public boolean write(String fileName)
  {
-	  String file = "src\\pixlab\\pixlab.images\\" + fileName;
      try {
-         this.writeOrFail(file);
+         this.writeOrFail(fileName);
          return true;
      } catch (Exception ex) {
-         System.out.println("There was an error trying to write " + file);
+         System.out.println("There was an error trying to write " + fileName);
          ex.printStackTrace();
          return false;
      }
-         
-
          
  }
  

@@ -1,4 +1,5 @@
 package pixlab;
+
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -225,18 +226,22 @@ public class PictureExplorer implements MouseMotionListener, ActionListener, Mou
    */
   private void setUpNextAndPreviousButtons()
   {
+	  Icon prevIcon = new ImageIcon("file:///Users/Jennie/git/APCSAgithub/APCSA/src/pixlab/images/leftArrow.gif", 
+              "previous index");
+Icon nextIcon = new ImageIcon("file:///Users/Jennie/git/APCSAgithub/APCSA/src/pixlab/images/rightArrow.gif", 
+              "next index");
+	  /*
+	  Icon prevIcon = new ImageIcon(DigitalPicture.class.getResource("\\images\\leftArrow.gif"), 
+              "previous index");
+Icon nextIcon = new ImageIcon(DigitalPicture.class.getResource("\\images\\rightArrow.gif"), 
+              "next index");
+              */
+
     // create the image icons for the buttons
-	  // create the image icons for the buttons
-	    Icon prevIcon = new ImageIcon(DigitalPicture.class.getResource("\\images\\leftArrow.gif"), 
-	                                  "previous index");
-	    Icon nextIcon = new ImageIcon(DigitalPicture.class.getResource("\\images\\rightArrow.gif"), 
-	                                  "next index");
-/**
-    Icon prevIcon = new ImageIcon(DigitalPicture.class.getResource("leftArrow.gif"), 
-                                  "previous index");
-    Icon nextIcon = new ImageIcon(DigitalPicture.class.getResource("rightArrow.gif"), 
-                                  "next index");
-                                  **/
+    // Icon prevIcon = new ImageIcon(DigitalPicture.class.getResource("leftArrow.gif"), 
+                                 // "previous index");
+    // Icon nextIcon = new ImageIcon(DigitalPicture.class.getResource("rightArrow.gif"), 
+         //                         "next index");
     // create the arrow buttons
     colPrevButton = new JButton(prevIcon);
     colNextButton = new JButton(nextIcon);
