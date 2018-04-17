@@ -812,7 +812,9 @@ Icon nextIcon = new ImageIcon(DigitalPicture.class.getResource("\\images\\rightA
    */
   public static void main( String args[])
   {
-    Picture pix = new Picture("beach.jpg");
+    //Picture pix = new Picture("beach.jpg");
+	  //Picture pix = new Picture("kitten2.jpg");
+	  Picture pix = new Picture("a-vulpix.png");
     pix.explore();
   }
   
