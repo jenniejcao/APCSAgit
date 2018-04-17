@@ -98,6 +98,9 @@ public class Picture extends SimplePicture
       }
     }
   }
+  public void keepOnlyBlue(){
+	  
+  }
   
   /** Method that mirrors the picture around a 
     * vertical mirror in the center of the picture
