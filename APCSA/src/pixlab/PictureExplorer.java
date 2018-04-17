@@ -226,16 +226,18 @@ public class PictureExplorer implements MouseMotionListener, ActionListener, Mou
    */
   private void setUpNextAndPreviousButtons()
   {
+	  /*//for mac
 	  Icon prevIcon = new ImageIcon("file:///Users/Jennie/git/APCSAgithub/APCSA/src/pixlab/images/leftArrow.gif", 
               "previous index");
 Icon nextIcon = new ImageIcon("file:///Users/Jennie/git/APCSAgithub/APCSA/src/pixlab/images/rightArrow.gif", 
               "next index");
-	  /*
+              */
+	  
 	  Icon prevIcon = new ImageIcon(DigitalPicture.class.getResource("\\images\\leftArrow.gif"), 
               "previous index");
 Icon nextIcon = new ImageIcon(DigitalPicture.class.getResource("\\images\\rightArrow.gif"), 
               "next index");
-              */
+          
 
     // create the image icons for the buttons
     // Icon prevIcon = new ImageIcon(DigitalPicture.class.getResource("leftArrow.gif"), 
