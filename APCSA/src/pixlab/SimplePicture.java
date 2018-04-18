@@ -67,8 +67,8 @@ public class SimplePicture implements DigitalPicture
   */
  public SimplePicture(String fileName)
  {
-	   //String file = "src\\pixlab\\images\\" + fileName; //for pc
-	   String file = "src/pixlab/images/" + fileName; //for mac
+	   String file = "src\\pixlab\\images\\" + fileName; //for pc
+	   //String file = "src/pixlab/images/" + fileName; //for mac
 
 
    // load the picture into the buffered image 
@@ -664,8 +664,10 @@ public class SimplePicture implements DigitalPicture
   */
  public boolean write(String fileName)
  {
+	 String file = "src\\pixlab\\images\\" + fileName; //for pc
+	   //String file = "src/pixlab/images/" + fileName; //for mac
      try {
-         this.writeOrFail(fileName);
+         this.writeOrFail(file);
          return true;
      } catch (Exception ex) {
          System.out.println("There was an error trying to write " + fileName);
