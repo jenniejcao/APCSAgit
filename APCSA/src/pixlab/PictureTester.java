@@ -17,6 +17,13 @@ public class PictureTester
     beach.zeroBlue();
     beach.explore();
   }
+  public static void testKeepOnlyBlue()
+  {
+    Picture beach = new Picture("beach.jpg");
+    beach.explore();
+    beach.keepOnlyBlue();
+    beach.explore();
+  }
   
   /** Method to test mirrorVertical */
   public static void testMirrorVertical()
@@ -51,6 +58,65 @@ public class PictureTester
     swan.edgeDetection(10);
     swan.explore();
   }
+  public static void testNegate(){
+	  Picture beach = new Picture("beach.jpg");
+	    beach.explore();
+	    beach.negate();
+	    beach.explore();
+  }
+  public static void testGrayscale(){
+	  Picture beach = new Picture("beach.jpg");
+	    beach.explore();
+	    beach.grayscale();
+	    beach.explore();
+  }
+  public static void testFixUnderwater(){
+	  Picture p = new Picture("water.jpg");
+	    p.explore();
+	    p.fixUnderwater();
+	    p.explore();
+  }
+  public static void testMirrorRightToLeft(){
+	  Picture temple = new Picture("temple.jpg");
+	    temple.explore();
+	    temple.mirrorVerticalRightToLeft();
+	    temple.explore();
+  }
+  public static void testMirrorHorizontal(){
+	  Picture temple = new Picture("temple.jpg");
+	    temple.explore();
+	    temple.mirrorHorizontal();
+	    temple.explore();
+  }
+  public static void testMirrorHorizontalBotToTop(){
+	  Picture temple = new Picture("temple.jpg");
+	    temple.explore();
+	    temple.mirrorHorizontalBotToTop();
+	    temple.explore();
+  }
+  public static void testMirrorDiagonal(){
+	  Picture beach = new Picture("beach.jpg");
+	    beach.explore();
+	    beach.mirrorDiagonal();
+	    beach.explore();
+  }
+  public static void testMirrorArms()
+  {
+    Picture p = new Picture("snowman.jpg");
+    p.explore();
+    p.mirrorArms();
+    p.explore();
+  }
+  public static void testMirrorGull()
+  {
+    Picture p = new Picture("seagull.jpg");
+    p.explore();
+    p.mirrorGull();
+    p.explore();
+  }
+  
+  
+  
   
   /** Main method for testing.  Every class can have a main
     * method in Java */
@@ -59,7 +125,7 @@ public class PictureTester
     // uncomment a call here to run a test
     // and comment out the ones you don't want
     // to run
-    testZeroBlue();
+    //testZeroBlue();
     //testKeepOnlyBlue();
     //testKeepOnlyRed();
     //testKeepOnlyGreen();
@@ -67,9 +133,12 @@ public class PictureTester
     //testGrayscale();
     //testFixUnderwater();
     //testMirrorVertical();
+	//testMirrorRightToLeft();
+	//testMirrorHorizontal();
+	//testMirrorHorizontalBotToTop();
     //testMirrorTemple();
     //testMirrorArms();
-    //testMirrorGull();
+    testMirrorGull();
     //testMirrorDiagonal();
     //testCollage();
     //testCopy();
