@@ -339,8 +339,8 @@ public class Picture extends SimplePicture
 	            toRow < toPixels.length; 
 	            fromRow++, toRow++)
 	       {
-	         for (int fromCol = frow, toCol = startCol; 
-	              fromCol < endRow &&
+	         for (int fromCol = fcol, toCol = startCol; 
+	              fromCol < endCol &&
 	              toCol < toPixels[0].length;  
 	              fromCol++, toCol++)
 	         {
@@ -373,21 +373,23 @@ public class Picture extends SimplePicture
     Picture a = new Picture("seagull.jpg");
     Picture b = new Picture("kitten2.jpg");
     Picture c = new Picture("barbaraS.jpg");
+    Picture d = new Picture("jenny-red.jpg");
+    Picture e = new Picture("blue-mark.jpg");
+    Picture f = new Picture("snowman.jpg");
     this.copy(a, 0,0);
-    this.copy(a,0,0,40,40,100,100);
+    this.copy(d, 100, 200, 82, 114,112,205);
     this.copy(b,100,0,150,150,200,200);
-    a.fixUnderwater();
-    this.copy(a,400,0);
+    f.negate();
+    this.copy(f,340,130,156,97,194,171);
     this.copy(b,400,0);
     this.copy(c, 400,200);
     b.zeroBlue();
     c.zeroBlue();
-    this.copy(a,0,0,50,50,100,100);
     this.copy(b,0,0,50,50,100,100);
     this.copy(c,0,0,50,50,100,100);
     this.copy(c,60,60,70,70,100,100);
-  
     this.mirrorVertical();
+    this.copy(e, 160, 300, 252,301,275,359);
     
     this.write("collage.jpg");
   }
@@ -418,6 +420,55 @@ public class Picture extends SimplePicture
           leftPixel.setColor(Color.WHITE);
       }
     }
+    
+    Pixel topPixel=null;
+    Pixel bottomPixel=null;
+    Color bottomColor = null;
+    for (int col = 0; col < pixels[0].length; col++)
+    {
+      for (int row = 0; 
+           row < pixels.length-1; row++)
+      {
+        topPixel = pixels[row][col];
+        bottomPixel = pixels[row+1][col];
+        bottomColor = bottomPixel.getColor();
+        if (topPixel.colorDistance(bottomColor) > 
+            edgeDist)
+          topPixel.setColor(Color.BLACK);
+       
+      }
+    }
+    
+  }
+  public void edgeDetection2(int edgeDist)
+  {
+    Pixel leftPixel = null;
+    Pixel rightPixel = null;
+    Pixel bottomPixel= null;
+    Pixel[][] pixels = this.getPixels2D();
+    Color rightColor = null;
+    Color bottomColor=null;
+    for (int row = 0; row < pixels.length-1; row++)
+    {
+      for (int col = 0; 
+           col < pixels[0].length-1; col++)
+      {
+        leftPixel = pixels[row][col];
+        rightPixel = pixels[row][col+1];
+        bottomPixel=pixels[row+1][col];
+        rightColor = rightPixel.getColor();
+        bottomColor=bottomPixel.getColor();
+        if (leftPixel.colorDistance(rightColor) > edgeDist || leftPixel.colorDistance(bottomColor)>edgeDist)
+          leftPixel.setColor(Color.BLACK);
+        else
+        {
+        		leftPixel.setColor(Color.WHITE);
+        }
+        
+      }
+    }
+    
+    
   }
   
   
@@ -427,7 +478,7 @@ public class Picture extends SimplePicture
   public static void main(String[] args) 
   {
 	  
-    Picture beach = new Picture("beach.jpg");
+    Picture beach = new Picture("blue-mark.jpg");
     beach.explore();
     beach.zeroBlue();
     beach.explore();

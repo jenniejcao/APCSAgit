@@ -76,8 +76,14 @@ public class PictureTester
   /** Method to test edgeDetection */
   public static void testEdgeDetection()
   {
-    Picture swan = new Picture("swan.jpg");
+	Picture swan = new Picture("swan.jpg");
     swan.edgeDetection(10);
+    swan.explore();
+  }
+  public static void testEdgeDetection2()
+  {
+	Picture swan = new Picture("swan.jpg");
+    swan.edgeDetection2(10);
     swan.explore();
   }
   public static void testNegate(){
@@ -163,7 +169,7 @@ public class PictureTester
     //testMirrorGull();
     //testMirrorDiagonal();
     //testCollage();
-	  testMyCollage();
+	testMyCollage();
     //testCopy();
 	//testCopy2();
     //testEdgeDetection();
