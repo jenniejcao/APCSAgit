@@ -143,7 +143,7 @@ public class PictureTester
     p.explore();
   }
   public static void testBlur(){
-	  Picture p = new Picture("redMotorcycle.jpg");
+	  Picture p = new Picture("blueMotorcycle.jpg");
 	  p.explore();
 	  p.blur(0,0,200,200);
 	  p.blur(100,100,200,200);
