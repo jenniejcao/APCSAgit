@@ -48,9 +48,13 @@ public class Alien extends MovingThing
 	public void draw( Graphics window )
 	{
 		window.drawImage(image,getX(),getY(),80,80,null);
-		window.setColor(Color.BLACK);
+		this.move("RIGHT");
+		/*
+		//window.setColor(Color.BLACK);
 		setX(getX()+getSpeed());
-		window.drawImage(image,getX(),getY(),80,80,null);
+		//window.drawImage(image,getX(),getY(),80,80,null);
+		 * */
+		 
 	}
 
 	public String toString()

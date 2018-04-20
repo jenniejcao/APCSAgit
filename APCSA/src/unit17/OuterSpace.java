@@ -1,5 +1,6 @@
 package unit17;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Canvas;
@@ -17,10 +18,10 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 	private Alien alienOne;
 	private Alien alienTwo;
 
-	/* uncomment once you are ready for this part
-	 *
+	/* uncomment once you are ready for this part */
+	 
 	private ArrayList<Alien> aliens;
-	*/
+	
 	private ArrayList<Ammo> shots;
 
 	private boolean[] keys;
@@ -32,9 +33,13 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 
 		keys = new boolean[5];
 		ship = new Ship(300,200,5);
-		alienOne=new Alien(200,100,2);
-		alienTwo = new Alien(100,100,3);
+		alienOne=new Alien(200,100,1);
+		alienTwo = new Alien(100,100,1);
 		shots=new ArrayList<Ammo>();
+		aliens=new ArrayList<Alien>();
+		aliens.add(alienOne);
+		aliens.add(alienTwo);
+		
 
 		//instantiate other stuff
 
@@ -87,26 +92,42 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 		if (keys[4]==true){
 			Ammo a = new Ammo(ship.getX(), ship.getY(),2);
 			shots.add(a);
+			keys[4]=false;
 			
 		}
 		
-
 		//add code to move stuff
 		for (Ammo a:shots){
 			a.draw(graphToBack);
+			for (Alien al: aliens){
+				if (aliens.size()>0){
+					if ((a.getY()<=al.getY()+80 &&a.getY()>=al.getY())&& (a.getX()>=al.getX()&&a.getY()<=al.getX()+80)){
+						al.setPos(1000, 1000);
+				
+					}
+				}
+			}
 		}
 		
-
-
 		//add in collision detection
-		if (alienOne.getX()>=800||alienOne.getX()<=0){
-			alienOne.setSpeed(-alienOne.getSpeed());
-		}
-		if (alienTwo.getX()>=800||alienTwo.getX()<=0){
-			alienTwo.setSpeed(-alienTwo.getSpeed());
+		for (Alien a: aliens){
+			if (a.getX()>=800||a.getX()<=0){
+				a.setSpeed(-a.getSpeed());
+			}
 		}
 		
-
+		if (ship.getX()<0){
+			ship.setX(720);
+		}
+		if (ship.getX()>720){
+			ship.setX(0);
+		}
+		if (ship.getY()<0){
+			ship.setY(520);
+		}
+		if(ship.getY()>520){
+			ship.setY(0);
+		}
 
 		twoDGraph.drawImage(back, null, 0, 0);
 	}
