@@ -26,8 +26,8 @@ public class Alien extends MovingThing
 		speed=s;
 		try
 		{
-			//image = ImageIO.read(new File("src/unit17/ship.jpg")); //mac
-			image = ImageIO.read(new File("src\\unit17\\alien.jpg"));
+			image = ImageIO.read(new File("src/unit17/alien.jpg")); //mac
+			//image = ImageIO.read(new File("src\\unit17\\alien.jpg"));
 		}
 		catch(Exception e)
 		{
@@ -47,6 +47,9 @@ public class Alien extends MovingThing
 
 	public void draw( Graphics window )
 	{
+		window.drawImage(image,getX(),getY(),80,80,null);
+		window.setColor(Color.BLACK);
+		setX(getX()+getSpeed());
 		window.drawImage(image,getX(),getY(),80,80,null);
 	}
 

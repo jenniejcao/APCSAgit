@@ -20,8 +20,8 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 	/* uncomment once you are ready for this part
 	 *
 	private ArrayList<Alien> aliens;
-	private ArrayList<Ammo> shots;
 	*/
+	private ArrayList<Ammo> shots;
 
 	private boolean[] keys;
 	private BufferedImage back;
@@ -34,6 +34,7 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 		ship = new Ship(300,200,5);
 		alienOne=new Alien(200,100,2);
 		alienTwo = new Alien(100,100,3);
+		shots=new ArrayList<Ammo>();
 
 		//instantiate other stuff
 
@@ -83,13 +84,29 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 		if (keys[3]==true){
 			ship.move("DOWN");
 		}
-		ship.draw(graphToBack);
+		if (keys[4]==true){
+			Ammo a = new Ammo(ship.getX(), ship.getY(),2);
+			shots.add(a);
+			
+		}
+		
 
 		//add code to move stuff
+		for (Ammo a:shots){
+			a.draw(graphToBack);
+			
+		}
 		
 
 
 		//add in collision detection
+		if (alienOne.getX()>=800||alienOne.getX()<=0){
+			alienOne.setSpeed(-alienOne.getSpeed());
+		}
+		if (alienTwo.getX()>=800||alienTwo.getX()<=0){
+			alienTwo.setSpeed(-alienTwo.getSpeed());
+		}
+		
 
 
 		twoDGraph.drawImage(back, null, 0, 0);
