@@ -94,7 +94,6 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 		//add code to move stuff
 		for (Ammo a:shots){
 			a.draw(graphToBack);
-			
 		}
 		
 

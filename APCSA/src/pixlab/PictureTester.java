@@ -142,6 +142,21 @@ public class PictureTester
     p.mirrorGull();
     p.explore();
   }
+  public static void testBlur(){
+	  Picture p = new Picture("redMotorcycle.jpg");
+	  p.explore();
+	  p.blur(0,0,200,200);
+	  p.blur(100,100,200,200);
+	  p.blur(140,100,100,200);
+	  p.blur(0,0,200,200);
+	  p.blur(100,100,200,200);
+	  p.blur(140,100,100,200);
+	  p.blur(100,100,200,200);
+	  p.blur(140,100,100,200);
+	  p.blur(0,0,200,200);
+	  p.blur(100,100,200,200);
+	  p.explore();
+  }
   
   
   
@@ -173,12 +188,13 @@ public class PictureTester
     //testCopy();
 	//testCopy2();
     //testEdgeDetection();
-    testEdgeDetection2();
+    //testEdgeDetection2();
     //testChromakey();
     //testEncodeAndDecode();
     //testGetCountRedOverValue(250);
     //testSetRedToHalfValueInTopHalf();
     //testClearBlueOverValue(200);
     //testGetAverageForColumn(0);
+	  testBlur();
   }
 }
