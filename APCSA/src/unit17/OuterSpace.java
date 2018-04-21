@@ -17,6 +17,9 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 	private Ship ship;
 	private Alien alienOne;
 	private Alien alienTwo;
+	
+	private Aliens alienmaker; //
+	private Alien[][] alienmat; //
 
 	/* uncomment once you are ready for this part */
 	 
@@ -33,10 +36,25 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 
 		keys = new boolean[5];
 		ship = new Ship(300,200,5);
-		alienOne=new Alien(200,100,1);
-		alienTwo = new Alien(100,100,1);
+		alienOne=new Alien(200,100,2);
+		alienTwo = new Alien(100,100,3);
 		shots=new ArrayList<Ammo>();
 		aliens=new ArrayList<Alien>();
+		
+		//
+		alienmaker = new Aliens();
+		alienmat = new Alien[4][4];
+		alienmat=alienmaker.returnAliens();
+		
+		for (int i=0; i<alienmat.length; i++){
+			for (int j=0; j<alienmat[0].length; j++){
+				Alien a = alienmat[i][j];
+				aliens.add(a);
+			}
+		}
+		//
+
+
 		aliens.add(alienOne);
 		aliens.add(alienTwo);
 		
@@ -74,8 +92,13 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 		graphToBack.drawString("StarFighter ", 25, 50 );
 		
 		ship.draw(graphToBack);
+		/*
 		alienOne.draw(graphToBack);
 		alienTwo.draw(graphToBack);
+		*/
+		for (Alien a: aliens){
+			a.draw(graphToBack);
+		}
 
 		if(keys[0] == true){
 			ship.move("LEFT");
@@ -101,7 +124,7 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 			a.draw(graphToBack);
 			for (Alien al: aliens){
 				if (aliens.size()>0){
-					if ((a.getY()<=al.getY()+80 &&a.getY()>=al.getY())&& (a.getX()>=al.getX()&&a.getY()<=al.getX()+80)){
+					if ((a.getY()<=al.getY()+80 &&a.getY()>=al.getY())&& (a.getX()>=al.getX()&&a.getX()<=al.getX()+80)){
 						al.setPos(1000, 1000);
 				
 					}
@@ -117,15 +140,15 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 		}
 		
 		if (ship.getX()<0){
-			ship.setX(720);
+			ship.setX(800);
 		}
-		if (ship.getX()>720){
+		if (ship.getX()>800){
 			ship.setX(0);
 		}
 		if (ship.getY()<0){
-			ship.setY(520);
+			ship.setY(600);
 		}
-		if(ship.getY()>520){
+		if(ship.getY()>600){
 			ship.setY(0);
 		}
 
