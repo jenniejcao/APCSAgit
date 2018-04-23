@@ -26,7 +26,11 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 	private ArrayList<Alien> aliens;
 	
 	private ArrayList<Ammo> shots;
+	
 
+
+	private int points;
+	
 	private boolean[] keys;
 	private BufferedImage back;
 
@@ -35,7 +39,7 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 		setBackground(Color.black);
 
 		keys = new boolean[5];
-		ship = new Ship(300,200,5);
+		ship = new Ship(300,400,5);
 		alienOne=new Alien(200,100,2);
 		alienTwo = new Alien(100,100,3);
 		shots=new ArrayList<Ammo>();
@@ -43,8 +47,9 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 		
 		//
 		alienmaker = new Aliens();
-		alienmat = new Alien[4][4];
+		alienmat = new Alien[3][3];
 		alienmat=alienmaker.returnAliens();
+		points=0;
 		
 		for (int i=0; i<alienmat.length; i++){
 			for (int j=0; j<alienmat[0].length; j++){
@@ -52,7 +57,7 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 				aliens.add(a);
 			}
 		}
-		//
+	//
 
 
 		aliens.add(alienOne);
@@ -98,6 +103,7 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 		*/
 		for (Alien a: aliens){
 			a.draw(graphToBack);
+			
 		}
 
 		if(keys[0] == true){
@@ -118,7 +124,7 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 			keys[4]=false;
 			
 		}
-		
+		graphToBack.drawString("Points: "+points, 300, 500);
 		//add code to move stuff
 		for (Ammo a:shots){
 			a.draw(graphToBack);
@@ -126,6 +132,12 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 				if (aliens.size()>0){
 					if ((a.getY()<=al.getY()+80 &&a.getY()>=al.getY())&& (a.getX()>=al.getX()&&a.getX()<=al.getX()+80)){
 						al.setPos(1000, 1000);
+						graphToBack.setColor(Color.BLACK);
+						graphToBack.drawString("Points: "+points, 300, 500);
+						
+						points++;
+				
+						
 				
 					}
 				}
@@ -136,6 +148,15 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 		for (Alien a: aliens){
 			if (a.getX()>=800||a.getX()<=0){
 				a.setSpeed(-a.getSpeed());
+			}
+			if ((a.getY()<=ship.getY()+80 &&a.getY()>=ship.getY())&& (a.getX()>=ship.getX()&&a.getX()<=ship.getX()+80)){
+				
+				ship.setPos(300, 400);
+				graphToBack.setColor(Color.BLACK);
+				graphToBack.drawString("Points: "+points, 300, 500);
+				
+				points=0;
+								
 			}
 		}
 		
