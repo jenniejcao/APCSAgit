@@ -4,11 +4,14 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.io.File;
 import javax.imageio.ImageIO;
+import java.util.Random;
 
 public class Alien extends MovingThing
 {
 	private int speed;
 	private Image image;
+	private int rand;
+	
 
 	public Alien()
 	{
@@ -33,6 +36,8 @@ public class Alien extends MovingThing
 		{
 			System.out.println("GADHFJAKSDF");
 		}
+		Random r = new Random();
+		rand=r.nextInt(10);
 	}
 
 	public void setSpeed(int s)
@@ -48,7 +53,14 @@ public class Alien extends MovingThing
 	public void draw( Graphics window )
 	{
 		window.drawImage(image,getX(),getY(),80,80,null);
-		this.move("RIGHT");
+
+		if (rand%2==0){
+			this.move("RIGHT");
+		}
+		else {
+			this.move("DOWN");
+		}
+	
 		/*
 		//window.setColor(Color.BLACK);
 		setX(getX()+getSpeed());

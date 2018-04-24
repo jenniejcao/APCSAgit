@@ -11,6 +11,7 @@ import static java.lang.Character.*;
 import java.awt.image.BufferedImage;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class OuterSpace extends Canvas implements KeyListener, Runnable
 {
@@ -26,6 +27,7 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 	private ArrayList<Alien> aliens;
 	
 	private ArrayList<Ammo> shots;
+
 	
 
 
@@ -38,10 +40,10 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 	{
 		setBackground(Color.black);
 
-		keys = new boolean[5];
+		keys = new boolean[6];
 		ship = new Ship(300,400,5);
-		alienOne=new Alien(200,100,2);
-		alienTwo = new Alien(100,100,3);
+		//alienOne=new Alien(200,100,2);
+		//alienTwo = new Alien(100,100,3);
 		shots=new ArrayList<Ammo>();
 		aliens=new ArrayList<Alien>();
 		
@@ -60,8 +62,8 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 	//
 
 
-		aliens.add(alienOne);
-		aliens.add(alienTwo);
+		//aliens.add(alienOne);
+		//aliens.add(alienTwo);
 		
 
 		//instantiate other stuff
@@ -132,10 +134,13 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 				if (aliens.size()>0){
 					if ((a.getY()<=al.getY()+80 &&a.getY()>=al.getY())&& (a.getX()>=al.getX()&&a.getX()<=al.getX()+80)){
 						al.setPos(1000, 1000);
+						al.setSpeed(0);
 						graphToBack.setColor(Color.BLACK);
 						graphToBack.drawString("Points: "+points, 300, 500);
 						
 						points++;
+						a.setPos(-1000, 1000);
+						a.setSpeed(0);
 				
 						
 				
@@ -149,6 +154,9 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 			if (a.getX()>=800||a.getX()<=0){
 				a.setSpeed(-a.getSpeed());
 			}
+			if (a.getY()>=600||a.getY()<=0){
+				a.setSpeed(-a.getSpeed());
+			}
 			if ((a.getY()<=ship.getY()+80 &&a.getY()>=ship.getY())&& (a.getX()>=ship.getX()&&a.getX()<=ship.getX()+80)){
 				
 				ship.setPos(300, 400);
@@ -156,10 +164,17 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 				graphToBack.drawString("Points: "+points, 300, 500);
 				
 				points=0;
+		
 								
 			}
 		}
 		
+		if (points==9){
+			graphToBack.setColor(Color.RED);
+			graphToBack.drawString("YOU WIN!",300,250);
+			
+			
+		}
 		if (ship.getX()<0){
 			ship.setX(800);
 		}
@@ -199,6 +214,8 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 		{
 			keys[4] = true;
 		}
+		
+		
 		repaint();
 	}
 
@@ -224,6 +241,8 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 		{
 			keys[4] = false;
 		}
+		
+
 		repaint();
 	}
 
