@@ -58,6 +58,7 @@ public class Alien extends MovingThing
 			this.move("RIGHT");
 		}
 		else {
+			
 			this.move("DOWN");
 		}
 	

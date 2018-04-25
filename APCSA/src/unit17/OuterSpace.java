@@ -40,7 +40,7 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 	{
 		setBackground(Color.black);
 
-		keys = new boolean[6];
+		keys = new boolean[5];
 		ship = new Ship(300,400,5);
 		//alienOne=new Alien(200,100,2);
 		//alienTwo = new Alien(100,100,3);
