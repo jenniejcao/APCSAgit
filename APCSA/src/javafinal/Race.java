@@ -12,9 +12,20 @@ public class Race extends Canvas implements KeyListener, Runnable
 {
 	private boolean[] keys;
 	private BufferedImage back;
+	private Car car;
+	private Block b;
 
 	public Race()
 	{
+		//8 lanes
+		keys=new boolean[2];
+		car = new Car(300,400);
+		b= new Block(30,40,20,20,2,Color.RED);
+		
+		
+		
+		
+		
 		setBackground(Color.black);
 		this.addKeyListener(this);
 		new Thread(this).start();
@@ -38,6 +49,28 @@ public class Race extends Canvas implements KeyListener, Runnable
 			//create a graphics reference to the back ground image
 			//we will draw all changes on the background image
 			Graphics graphToBack = back.createGraphics();
+			graphToBack.setColor(Color.BLACK);
+			graphToBack.fillRect(0,0,800,600);
+			graphToBack.setColor(Color.BLUE);
+			graphToBack.drawString("ROAD RACER ", 25, 50 );
+			car.draw(graphToBack);
+			
+			//movement
+			if (car.getX()==60&&keys[0]==true){
+				keys[0]=false;
+			}
+			if (car.getX()==620&&keys[1]==true){
+				keys[1]=false;
+			}
+			if (keys[0]==true){
+				
+				car.move("LEFT");
+				keys[0]=false;
+			}
+			if (keys[1]==true){
+				car.move("RIGHT");
+				keys[1]=false;
+			}
 			
 			
 			
@@ -47,7 +80,7 @@ public class Race extends Canvas implements KeyListener, Runnable
 			
 			
 			
-			
+	
 			
 			
 			twoDGraph.drawImage(back, null, 0, 0);
@@ -63,18 +96,7 @@ public class Race extends Canvas implements KeyListener, Runnable
 			{
 				keys[1] = true;
 			}
-			if (e.getKeyCode() == KeyEvent.VK_UP)
-			{
-				keys[2] = true;
-			}
-			if (e.getKeyCode() == KeyEvent.VK_DOWN)
-			{
-				keys[3] = true;
-			}
-			if (e.getKeyCode() == KeyEvent.VK_SPACE)
-			{
-				keys[4] = true;
-			}
+			
 			
 			
 			repaint();
@@ -89,18 +111,6 @@ public class Race extends Canvas implements KeyListener, Runnable
 			if (e.getKeyCode() == KeyEvent.VK_RIGHT)
 			{
 				keys[1] = false;
-			}
-			if (e.getKeyCode() == KeyEvent.VK_UP)
-			{
-				keys[2] = false;
-			}
-			if (e.getKeyCode() == KeyEvent.VK_DOWN)
-			{
-				keys[3] = false;
-			}
-			if (e.getKeyCode() == KeyEvent.VK_SPACE)
-			{
-				keys[4] = false;
 			}
 			
 

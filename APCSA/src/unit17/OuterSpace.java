@@ -132,7 +132,7 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 			a.draw(graphToBack);
 			for (Alien al: aliens){
 				if (aliens.size()>0){
-					if ((a.getY()<=al.getY()+80 &&a.getY()>=al.getY())&& (a.getX()>=al.getX()&&a.getX()<=al.getX()+80)){
+					if ((a.getY()<al.getY()+80 &&a.getY()>al.getY())&& (a.getX()>al.getX()&&a.getX()<al.getX()+80)){
 						al.setPos(1000, 1000);
 						al.setSpeed(0);
 						graphToBack.setColor(Color.BLACK);

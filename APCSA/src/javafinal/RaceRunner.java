@@ -18,6 +18,7 @@ public class RaceRunner extends JFrame
 
 		getContentPane().add(theGame);
 
+		
 		setVisible(true);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 	}
