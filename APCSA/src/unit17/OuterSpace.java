@@ -12,6 +12,7 @@ import java.awt.image.BufferedImage;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Random;
 
 public class OuterSpace extends Canvas implements KeyListener, Runnable
 {
@@ -21,6 +22,8 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 	
 	private Aliens alienmaker; //
 	private Alien[][] alienmat; //
+	private Powerup pu;
+	
 
 	/* uncomment once you are ready for this part */
 	 
@@ -28,6 +31,7 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 	
 	private ArrayList<Ammo> shots;
 
+	private ArrayList<Ammo> alienshots;
 	
 
 
@@ -46,12 +50,13 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 		//alienTwo = new Alien(100,100,3);
 		shots=new ArrayList<Ammo>();
 		aliens=new ArrayList<Alien>();
-		
+		pu=new Powerup(200,200);
 		//
 		alienmaker = new Aliens();
 		alienmat = new Alien[3][3];
 		alienmat=alienmaker.returnAliens();
 		points=0;
+		alienshots = new ArrayList<Ammo>();
 		
 		for (int i=0; i<alienmat.length; i++){
 			for (int j=0; j<alienmat[0].length; j++){
@@ -99,6 +104,7 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 		graphToBack.drawString("StarFighter ", 25, 50 );
 		
 		ship.draw(graphToBack);
+		pu.draw(graphToBack);
 		/*
 		alienOne.draw(graphToBack);
 		alienTwo.draw(graphToBack);
@@ -130,6 +136,7 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 		//add code to move stuff
 		for (Ammo a:shots){
 			a.draw(graphToBack);
+			a.move("UP");
 			for (Alien al: aliens){
 				if (aliens.size()>0){
 					if ((a.getY()<al.getY()+80 &&a.getY()>al.getY())&& (a.getX()>al.getX()&&a.getX()<al.getX()+80)){
@@ -150,6 +157,7 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 		}
 		
 		//add in collision detection
+		Random r= new Random();
 		for (Alien a: aliens){
 			if (a.getX()>=800||a.getX()<=0){
 				a.setSpeed(-a.getSpeed());
@@ -157,6 +165,15 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 			if (a.getY()>=600||a.getY()<=0){
 				a.setSpeed(-a.getSpeed());
 			}
+			
+
+
+			if (r.nextInt(1000)%999==0){
+				Ammo shot = new Ammo(a.getX(), a.getY(), 2);
+				alienshots.add(shot);
+				
+			}
+			/*
 			if ((a.getY()<=ship.getY()+80 &&a.getY()>=ship.getY())&& (a.getX()>=ship.getX()&&a.getX()<=ship.getX()+80)){
 				
 				ship.setPos(300, 400);
@@ -166,15 +183,34 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 				points=0;
 		
 								
-			}
+			} */
 		}
-		
+		for (Ammo a: alienshots){
+			a.draw(graphToBack);
+			a.move("DOWN");
+			graphToBack.setColor(Color.BLACK);
+			a.draw(graphToBack);
+			
+			if ((a.getY()<ship.getY()+80 &&a.getY()>ship.getY())&& (a.getX()>ship.getX()&&a.getX()<ship.getX()+80)){
+				if (ship.getType().equals("ship.java")){
+				graphToBack.setColor(Color.BLACK);
+				graphToBack.drawString("Points: "+points, 300, 500);
+				
+				points--;
+				a.setPos(-1000, -1000);
+				a.setSpeed(0);
+				}
+			}
+			
+		}
+		/*
 		if (points==9){
 			graphToBack.setColor(Color.RED);
 			graphToBack.drawString("YOU WIN!",300,250);
 			
 			
 		}
+		*/
 		if (ship.getX()<0){
 			ship.setX(800);
 		}
@@ -187,6 +223,19 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 		if(ship.getY()>600){
 			ship.setY(0);
 		}
+		//powerup ship
+		
+		if ((pu.getY()<=ship.getY()+80 && pu.getY()>=ship.getY())&&(pu.getX()>=ship.getX()&&pu.getX()<=ship.getX()+80)){
+	
+			ship=new Ship(ship.getX(), ship.getY(), ship.getSpeed(), "ship.jpgWithShield.jpg");
+			pu.setX(1000);
+			pu.setY(1000);
+		}
+	
+		ship.draw(graphToBack);
+		
+		
+		
 
 		twoDGraph.drawImage(back, null, 0, 0);
 	}

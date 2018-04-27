@@ -7,26 +7,29 @@ import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
-
+import java.util.Random;
+import java.util.ArrayList;
 public class Race extends Canvas implements KeyListener, Runnable
 {
 	private boolean[] keys;
 	private BufferedImage back;
 	private Car car;
-	private Block b;
+
+	private Lane[] lanes;
+	private ArrayList<Block>obstacles;
 
 	public Race()
 	{
 		//8 lanes
 		keys=new boolean[2];
 		car = new Car(300,400);
-		b= new Block(30,40,20,20,2,Color.RED);
+
+		lanes= new Lane[9];
+		obstacles = new ArrayList<Block>();
 		
 		
 		
-		
-		
-		setBackground(Color.black);
+		setBackground(Color.WHITE);
 		this.addKeyListener(this);
 		new Thread(this).start();
 
@@ -49,12 +52,29 @@ public class Race extends Canvas implements KeyListener, Runnable
 			//create a graphics reference to the back ground image
 			//we will draw all changes on the background image
 			Graphics graphToBack = back.createGraphics();
-			graphToBack.setColor(Color.BLACK);
+			graphToBack.setColor(Color.WHITE);
 			graphToBack.fillRect(0,0,800,600);
-			graphToBack.setColor(Color.BLUE);
+			graphToBack.setColor(Color.BLACK);
 			graphToBack.drawString("ROAD RACER ", 25, 50 );
 			car.draw(graphToBack);
-			
+			graphToBack.setColor(Color.MAGENTA);
+			for (int i=0; i<9; i++){
+				Lane l = new Lane((i*80)+60);
+				lanes[i]=l;
+				l.draw(graphToBack);
+			}
+			Random r = new Random();
+			int m= r.nextInt(1000);
+			if (m%49==0){
+				int k =r.nextInt(9);
+				Block b =new Block(lanes[k].returnx1(),0,80,80,2);
+				obstacles.add(b);
+				
+			}
+			for (Block b: obstacles){
+				b.draw(graphToBack);
+				b.move("DOWN");
+			}
 			//movement
 			if (car.getX()==60&&keys[0]==true){
 				keys[0]=false;

@@ -1,5 +1,6 @@
 package unit17;
 import java.awt.Color;
+
 import java.awt.Graphics;
 import java.awt.Image;
 import java.io.File;
@@ -54,13 +55,13 @@ public class Alien extends MovingThing
 	{
 		window.drawImage(image,getX(),getY(),80,80,null);
 
-		if (rand%2==0){
+		//if (rand%2==0){
 			this.move("RIGHT");
-		}
-		else {
+		//}
+		//else {
 			
-			this.move("DOWN");
-		}
+			//this.move("DOWN");
+		//}
 	
 		/*
 		//window.setColor(Color.BLACK);

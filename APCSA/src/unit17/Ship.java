@@ -10,6 +10,7 @@ public class Ship extends MovingThing
 {
 	private int speed;
 	private Image image;
+	private String file="ship.java";
 
 	public Ship()
 	{
@@ -36,6 +37,24 @@ public class Ship extends MovingThing
 			System.out.println("Houston, we have a problem!");
 		}
 	}
+	
+	public Ship(int x, int y, int s, String type)
+	{
+		super(x, y);
+		speed=s;
+		file=type;
+		try
+		{
+			image = ImageIO.read(new File("src/unit17/"+file)); //mac
+			//image = ImageIO.read(new File("src\\unit17\\ship.jpg"));
+		}
+		catch(Exception e)
+		{
+			//feel free to do something here
+			System.out.println("Houston, we have a problem!");
+		}
+	}
+
 
 
 	public void setSpeed(int s)
@@ -47,6 +66,10 @@ public class Ship extends MovingThing
 	public int getSpeed()
 	{
 	   return speed;
+	}
+
+	public String getType(){
+		return file;
 	}
 
 	public void draw( Graphics window )

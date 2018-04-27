@@ -35,7 +35,7 @@ public class Block extends MovingThing implements Locatable {
    {
 	   draw(window,Color.BLACK);
 	   setY(getY()+getSpeed());
-			//draw the ball at its new location
+		
 	   draw(window);
      
       
