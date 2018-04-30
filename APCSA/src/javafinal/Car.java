@@ -7,7 +7,7 @@ import java.awt.Image;
 import javax.imageio.ImageIO;
 
 
-public class Car {
+public class Car implements Collidable{
 	private int xPos;
 	private int yPos;
 	private Image image;
@@ -60,6 +60,40 @@ public class Car {
 		else if (direction.equals("RIGHT")){
 			setX(getX()+80);
 			}
+	}
+	@Override
+	public boolean didCollideLeft(Object obj) {
+		MovingThing b = (MovingThing)obj;
+		if ((didCollideTop(b)||didCollideBottom(b))){
+			return true;
+		}
+		return false;
+	}
+	@Override
+	public boolean didCollideRight(Object obj) {
+		MovingThing b = (MovingThing)obj;
+		if ((didCollideTop(b)||didCollideBottom(b))){
+			return true;
+		}
+		return false;
+	}
+	@Override
+	public boolean didCollideTop(Object obj) {
+		// TODO Auto-generated method stub
+		MovingThing b = (MovingThing)obj;
+		if ((getY()<= b.getY()+80&&getY()>=b.getY())&&getX()==b.getX()){
+			return true;
+		}
+		return false;
+	}
+	@Override
+	public boolean didCollideBottom(Object obj) {
+		// TODO Auto-generated method stub
+		MovingThing b = (MovingThing)obj;
+		if ((getY()>= b.getY()&&getY()+80<=b.getY())&&getX()==b.getX()){
+			return true;
+		}
+		return false;
 	}
 	
 

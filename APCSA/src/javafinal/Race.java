@@ -14,21 +14,27 @@ public class Race extends Canvas implements KeyListener, Runnable
 	private boolean[] keys;
 	private BufferedImage back;
 	private Car car;
-
+	private boolean cont;
 	private Lane[] lanes;
 	private ArrayList<Block>obstacles;
+	private final long start;
+	private long end;
+	private int setdiff;
+	private int stage;
 
 	public Race()
 	{
 		//8 lanes
 		keys=new boolean[2];
 		car = new Car(300,400);
-
+		cont=true;
 		lanes= new Lane[9];
 		obstacles = new ArrayList<Block>();
-		
-		
-		
+		setdiff=1;
+		start=System.currentTimeMillis();
+		end=start;
+		stage=0;
+	
 		setBackground(Color.WHITE);
 		this.addKeyListener(this);
 		new Thread(this).start();
@@ -52,6 +58,13 @@ public class Race extends Canvas implements KeyListener, Runnable
 			//create a graphics reference to the back ground image
 			//we will draw all changes on the background image
 			Graphics graphToBack = back.createGraphics();
+			if (stage==0){
+				graphToBack.drawString("play road racer", 200, 200);
+				if (keys[0]==true){
+					stage=1;
+				}
+			}
+			else{
 			graphToBack.setColor(Color.WHITE);
 			graphToBack.fillRect(0,0,800,600);
 			graphToBack.setColor(Color.BLACK);
@@ -63,9 +76,10 @@ public class Race extends Canvas implements KeyListener, Runnable
 				lanes[i]=l;
 				l.draw(graphToBack);
 			}
+			
 			Random r = new Random();
 			int m= r.nextInt(1000);
-			if (m%49==0){
+			if (m%49==0&&cont){
 				int k =r.nextInt(9);
 				Block b =new Block(lanes[k].returnx1(),0,80,80,2);
 				obstacles.add(b);
@@ -74,7 +88,33 @@ public class Race extends Canvas implements KeyListener, Runnable
 			for (Block b: obstacles){
 				b.draw(graphToBack);
 				b.move("DOWN");
+				if (car.didCollideTop(b)||car.didCollideBottom(b)){
+					for (Block bl: obstacles){
+						bl.setSpeed(0);
+						
+						
+					}
+					
+					cont=false;
+					
+				}
 			}
+			if (cont==false&&end==start){
+				end=System.currentTimeMillis();
+				double timeins = (end-start)/1000.0;
+				String time=String.format("%.2f",timeins);
+				time=("Time: "+time+" seconds");
+				System.out.println("time: "+time);
+				
+			}
+			
+			if (System.currentTimeMillis()==start+setdiff*1000){
+				setdiff++;
+				for (Block b: obstacles){
+					b.setSpeed(b.getSpeed()+1);
+				}
+			}
+			
 			//movement
 			if (car.getX()==60&&keys[0]==true){
 				keys[0]=false;
@@ -101,7 +141,7 @@ public class Race extends Canvas implements KeyListener, Runnable
 			
 			
 	
-			
+			}
 			
 			twoDGraph.drawImage(back, null, 0, 0);
 
