@@ -21,11 +21,11 @@ public class Race extends Canvas implements KeyListener, Runnable
 	private long end;
 	private int setdiff;
 	private int stage;
-
+	private String time;
 	public Race()
 	{
 		//8 lanes
-		keys=new boolean[2];
+		keys=new boolean[4];
 		car = new Car(300,400);
 		cont=true;
 		lanes= new Lane[9];
@@ -60,11 +60,12 @@ public class Race extends Canvas implements KeyListener, Runnable
 			Graphics graphToBack = back.createGraphics();
 			if (stage==0){
 				graphToBack.drawString("play road racer", 200, 200);
-				if (keys[0]==true){
+				if (keys[2]==true){
 					stage=1;
 				}
 			}
-			else{
+			else if (stage==1){
+				keys[2]=false;
 			graphToBack.setColor(Color.WHITE);
 			graphToBack.fillRect(0,0,800,600);
 			graphToBack.setColor(Color.BLACK);
@@ -78,8 +79,8 @@ public class Race extends Canvas implements KeyListener, Runnable
 			}
 			
 			Random r = new Random();
-			int m= r.nextInt(1000);
-			if (m%49==0&&cont){
+			int m= r.nextInt(40);
+			if (m==0&&cont){
 				int k =r.nextInt(9);
 				Block b =new Block(lanes[k].returnx1(),0,80,80,2);
 				obstacles.add(b);
@@ -92,23 +93,35 @@ public class Race extends Canvas implements KeyListener, Runnable
 					for (Block bl: obstacles){
 						bl.setSpeed(0);
 						
-						
 					}
 					
 					cont=false;
+				
+					graphToBack.setColor(Color.BLACK);
+					graphToBack.drawString("Press space to play again!!", 50, 100);
+					
+					
 					
 				}
-			}
-			if (cont==false&&end==start){
-				end=System.currentTimeMillis();
-				double timeins = (end-start)/1000.0;
-				String time=String.format("%.2f",timeins);
-				time=("Time: "+time+" seconds");
-				System.out.println("time: "+time);
 				
 			}
 			
-			if (System.currentTimeMillis()==start+setdiff*1000){
+			if (cont==false&&end==start){
+			
+				graphToBack.setColor(Color.GREEN);
+				graphToBack.fillOval(45, 42, 540, 302);
+				end=System.currentTimeMillis();
+				double timeins = (end-start)/1000.0;
+				time=String.format("%.2f",timeins);
+				time=("Time: "+time+" seconds");
+				System.out.println(time);
+				
+				
+				
+				
+			}
+			
+			if (System.currentTimeMillis()==start+setdiff*3000){
 				setdiff++;
 				for (Block b: obstacles){
 					b.setSpeed(b.getSpeed()+1);
@@ -138,7 +151,8 @@ public class Race extends Canvas implements KeyListener, Runnable
 			
 			
 			
-			
+		
+
 			
 	
 			}
@@ -146,6 +160,8 @@ public class Race extends Canvas implements KeyListener, Runnable
 			twoDGraph.drawImage(back, null, 0, 0);
 
 }
+	  
+	
 		public void keyPressed(KeyEvent e)
 		{
 			if (e.getKeyCode() == KeyEvent.VK_LEFT)
@@ -155,6 +171,9 @@ public class Race extends Canvas implements KeyListener, Runnable
 			if (e.getKeyCode() == KeyEvent.VK_RIGHT)
 			{
 				keys[1] = true;
+			}
+			if (e.getKeyCode() == KeyEvent.VK_SPACE);{
+				keys[2]=true;
 			}
 			
 			
@@ -171,6 +190,9 @@ public class Race extends Canvas implements KeyListener, Runnable
 			if (e.getKeyCode() == KeyEvent.VK_RIGHT)
 			{
 				keys[1] = false;
+			}
+			if (e.getKeyCode() == KeyEvent.VK_SPACE);{
+				keys[2]=false;
 			}
 			
 
