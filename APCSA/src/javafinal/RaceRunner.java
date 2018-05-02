@@ -2,25 +2,29 @@ package javafinal;
 
 import javax.swing.JFrame;
 import java.awt.Component;
-
+import java.util.ArrayList;
 public class RaceRunner extends JFrame
 {
 	private static final int WIDTH = 800;
 	private static final int HEIGHT = 600;
 
+
 	public RaceRunner()
 	{
 		super("SUPER RACER"); 
 		setSize(WIDTH,HEIGHT);
-
 		Race theGame = new Race();
-		((Component)theGame).setFocusable(true);
+			((Component)theGame).setFocusable(true);
+			getContentPane().add(theGame);
 
-		getContentPane().add(theGame);
-
+			
+			setVisible(true);
+			
 		
-		setVisible(true);
+		
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		
+	
 	}
 
 	public static void main( String args[] )

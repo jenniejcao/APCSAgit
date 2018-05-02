@@ -9,6 +9,8 @@ import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 import java.util.Random;
 import java.util.ArrayList;
+import java.util.Scanner;
+
 public class Race extends Canvas implements KeyListener, Runnable
 {
 	private boolean[] keys;
@@ -17,11 +19,12 @@ public class Race extends Canvas implements KeyListener, Runnable
 	private boolean cont;
 	private Lane[] lanes;
 	private ArrayList<Block>obstacles;
-	private final long start;
+	private long start;
 	private long end;
 	private int setdiff;
 	private int stage;
 	private String time;
+	private boolean playAgain;
 	public Race()
 	{
 		//8 lanes
@@ -34,6 +37,7 @@ public class Race extends Canvas implements KeyListener, Runnable
 		start=System.currentTimeMillis();
 		end=start;
 		stage=0;
+		playAgain=false;
 	
 		setBackground(Color.WHITE);
 		this.addKeyListener(this);
@@ -59,13 +63,16 @@ public class Race extends Canvas implements KeyListener, Runnable
 			//we will draw all changes on the background image
 			Graphics graphToBack = back.createGraphics();
 			if (stage==0){
-				graphToBack.drawString("play road racer", 200, 200);
+				graphToBack.drawString("Play RoadRacer!", 200, 100);
+				graphToBack.drawString("Avoid all the obstacles by pressing the arrow keys!", 200, 200);
+				graphToBack.drawString("Press space to continue!", 200, 300);
+				graphToBack.drawString("made by me", 200, 400);
 				if (keys[2]==true){
 					stage=1;
 				}
 			}
 			else if (stage==1){
-				keys[2]=false;
+
 			graphToBack.setColor(Color.WHITE);
 			graphToBack.fillRect(0,0,800,600);
 			graphToBack.setColor(Color.BLACK);
@@ -97,9 +104,15 @@ public class Race extends Canvas implements KeyListener, Runnable
 					
 					cont=false;
 				
+					graphToBack.setColor(Color.WHITE);
+					graphToBack.fillRect(50, 50, 200, 100);
 					graphToBack.setColor(Color.BLACK);
-					graphToBack.drawString("Press space to play again!!", 50, 100);
+					graphToBack.drawString("Press any key to play again!!", 100, 100);
+					if (keys[3]==true){
+						keys[3]=false;
+						RaceRunner go = new RaceRunner();
 					
+					}
 					
 					
 				}
@@ -108,14 +121,13 @@ public class Race extends Canvas implements KeyListener, Runnable
 			
 			if (cont==false&&end==start){
 			
-				graphToBack.setColor(Color.GREEN);
-				graphToBack.fillOval(45, 42, 540, 302);
+			
 				end=System.currentTimeMillis();
 				double timeins = (end-start)/1000.0;
 				time=String.format("%.2f",timeins);
 				time=("Time: "+time+" seconds");
 				System.out.println(time);
-				
+		
 				
 				
 				
@@ -160,7 +172,9 @@ public class Race extends Canvas implements KeyListener, Runnable
 			twoDGraph.drawImage(back, null, 0, 0);
 
 }
-	  
+	  public String getTime(){
+		  return time;
+	  }
 	
 		public void keyPressed(KeyEvent e)
 		{
@@ -174,6 +188,9 @@ public class Race extends Canvas implements KeyListener, Runnable
 			}
 			if (e.getKeyCode() == KeyEvent.VK_SPACE);{
 				keys[2]=true;
+			}
+			if (e.getKeyChar() == 'y');{
+				keys[3]=true;
 			}
 			
 			
@@ -194,7 +211,9 @@ public class Race extends Canvas implements KeyListener, Runnable
 			if (e.getKeyCode() == KeyEvent.VK_SPACE);{
 				keys[2]=false;
 			}
-			
+			if (e.getKeyChar() == 'y');{
+				keys[3]=false;
+			}
 
 			repaint();
 		}
@@ -217,4 +236,5 @@ public class Race extends Canvas implements KeyListener, Runnable
 	      {
 	      }
 	  	}
+	   
 }
