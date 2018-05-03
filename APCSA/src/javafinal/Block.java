@@ -2,9 +2,13 @@ package javafinal;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.io.File;
 
+import javax.imageio.ImageIO;
+import java.awt.Image;
 public class Block extends MovingThing implements Locatable {
 	
+private Image image;
 
 	public Block()
 	{
@@ -27,10 +31,23 @@ public class Block extends MovingThing implements Locatable {
 	public Block(int x, int y, int w, int h, int s, Color col){
 		super (x,y,w,h,s,col);	
 	}
+	public Block(int x, int y, int w, int h, int s,  String file){
+		super (x,y,w,h,s);	
+	
+		try
+		{
+			image = ImageIO.read(new File("src/javafinal/"+file)); //mac
+			//image = ImageIO.read(new File("src\\unit17\\ship.jpg"));
+		}
+		catch(Exception e)
+		{
+			//feel free to do something here
+			System.out.println("Houston, we have a problem!");
+		}
+	}
 	//add the other set methods
 	
-   
-
+	
    public void moveAndDraw(Graphics window)
    {
 	   draw(window,Color.BLACK);
@@ -40,7 +57,11 @@ public class Block extends MovingThing implements Locatable {
      
       
    }
-
+   public void draw( Graphics window){
+		
+		window.drawImage(image,getX(),getY(),80,80,null);
+	}
+  
    
 	public boolean equals(Object obj)
 	{

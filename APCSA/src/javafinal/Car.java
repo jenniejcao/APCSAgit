@@ -1,6 +1,7 @@
 package javafinal;
 
 import java.io.File;
+
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -20,7 +21,7 @@ public class Car implements Collidable{
 		yPos=y;
 		try
 		{
-			image = ImageIO.read(new File("src/javafinal/ship.jpg")); //mac
+			image = ImageIO.read(new File("src/javafinal/car.png")); //mac
 			//image = ImageIO.read(new File("src\\unit17\\ship.jpg"));
 		}
 		catch(Exception e)

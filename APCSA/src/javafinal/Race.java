@@ -73,9 +73,9 @@ public class Race extends Canvas implements KeyListener, Runnable
 			}
 			else if (stage==1){
 
-			graphToBack.setColor(Color.WHITE);
-			graphToBack.fillRect(0,0,800,600);
 			graphToBack.setColor(Color.BLACK);
+			graphToBack.fillRect(0,0,800,600);
+			graphToBack.setColor(Color.WHITE);
 			graphToBack.drawString("ROAD RACER ", 25, 50 );
 			car.draw(graphToBack);
 			graphToBack.setColor(Color.MAGENTA);
@@ -89,7 +89,7 @@ public class Race extends Canvas implements KeyListener, Runnable
 			int m= r.nextInt(40);
 			if (m==0&&cont){
 				int k =r.nextInt(9);
-				Block b =new Block(lanes[k].returnx1(),0,80,80,2);
+				Block b =new Block(lanes[k].returnx1(),0,80,80,2,"penguin.png");
 				obstacles.add(b);
 				
 			}
@@ -104,10 +104,10 @@ public class Race extends Canvas implements KeyListener, Runnable
 					
 					cont=false;
 				
-					graphToBack.setColor(Color.WHITE);
-					graphToBack.fillRect(50, 50, 200, 100);
 					graphToBack.setColor(Color.BLACK);
-					graphToBack.drawString("Press any key to play again!!", 100, 100);
+					graphToBack.fillRect(50, 50, 200, 100);
+					graphToBack.setColor(Color.WHITE);
+					graphToBack.drawString("Press enter to play again!!", 100, 100);
 					if (keys[3]==true){
 						keys[3]=false;
 						RaceRunner go = new RaceRunner();
@@ -116,8 +116,8 @@ public class Race extends Canvas implements KeyListener, Runnable
 					
 					
 				}
-				
-			}
+			 	
+			    }  
 			
 			if (cont==false&&end==start){
 			
@@ -189,7 +189,7 @@ public class Race extends Canvas implements KeyListener, Runnable
 			if (e.getKeyCode() == KeyEvent.VK_SPACE);{
 				keys[2]=true;
 			}
-			if (e.getKeyChar() == 'y');{
+			if (e.getKeyCode() == KeyEvent.VK_ENTER);{
 				keys[3]=true;
 			}
 			
@@ -211,7 +211,7 @@ public class Race extends Canvas implements KeyListener, Runnable
 			if (e.getKeyCode() == KeyEvent.VK_SPACE);{
 				keys[2]=false;
 			}
-			if (e.getKeyChar() == 'y');{
+			if (e.getKeyCode() == KeyEvent.VK_ENTER);{
 				keys[3]=false;
 			}
 

@@ -99,6 +99,8 @@ public abstract class MovingThing implements Locatable
 		   window.fillRect(getX(), getY(), getWidth(), getHeight());
 
 	   }
+	  
+
 
 	public void move(String direction)
 	{
