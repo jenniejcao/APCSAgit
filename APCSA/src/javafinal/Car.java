@@ -82,7 +82,7 @@ public class Car implements Collidable{
 	public boolean didCollideTop(Object obj) {
 		// TODO Auto-generated method stub
 		MovingThing b = (MovingThing)obj;
-		if ((getY()<= b.getY()+80&&getY()>=b.getY())&&getX()==b.getX()){
+		if ((getY()<= b.getY()+80&&(getY()>=b.getY()))&&getX()==b.getX()){
 			return true;
 		}
 		return false;
@@ -91,7 +91,7 @@ public class Car implements Collidable{
 	public boolean didCollideBottom(Object obj) {
 		// TODO Auto-generated method stub
 		MovingThing b = (MovingThing)obj;
-		if ((getY()>= b.getY()&&getY()+80<=b.getY())&&getX()==b.getX()){
+		if ((getY()>= b.getY()&&(getY()+80<=b.getY()&&getY()+80<=b.getY()+80))&&getX()==b.getX()){
 			return true;
 		}
 		return false;

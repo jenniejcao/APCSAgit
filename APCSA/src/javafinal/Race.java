@@ -24,7 +24,7 @@ public class Race extends Canvas implements KeyListener, Runnable
 	private int setdiff;
 	private int stage;
 	private String time;
-	private boolean playAgain;
+
 	public Race()
 	{
 		//8 lanes
@@ -33,11 +33,11 @@ public class Race extends Canvas implements KeyListener, Runnable
 		cont=true;
 		lanes= new Lane[9];
 		obstacles = new ArrayList<Block>();
-		setdiff=1;
+		setdiff=0;
 		start=System.currentTimeMillis();
 		end=start;
 		stage=0;
-		playAgain=false;
+	
 	
 		setBackground(Color.WHITE);
 		this.addKeyListener(this);
@@ -66,7 +66,7 @@ public class Race extends Canvas implements KeyListener, Runnable
 				graphToBack.drawString("Play RoadRacer!", 200, 100);
 				graphToBack.drawString("Avoid all the obstacles by pressing the arrow keys!", 200, 200);
 				graphToBack.drawString("Press space to continue!", 200, 300);
-				graphToBack.drawString("made by me", 200, 400);
+				graphToBack.drawString("made by Jennie Cao", 200, 400);
 				if (keys[2]==true){
 					stage=1;
 				}
@@ -89,7 +89,7 @@ public class Race extends Canvas implements KeyListener, Runnable
 			int m= r.nextInt(40);
 			if (m==0&&cont){
 				int k =r.nextInt(9);
-				Block b =new Block(lanes[k].returnx1(),0,80,80,2,"penguin.png");
+				Block b =new Block(lanes[k].returnx1(),0,80,80,2+setdiff,"penguin.png");
 				obstacles.add(b);
 				
 			}
@@ -107,9 +107,10 @@ public class Race extends Canvas implements KeyListener, Runnable
 					graphToBack.setColor(Color.BLACK);
 					graphToBack.fillRect(50, 50, 200, 100);
 					graphToBack.setColor(Color.WHITE);
-					graphToBack.drawString("Press enter to play again!!", 100, 100);
+					graphToBack.drawString("Press any key to play again!!", 100, 100);
 					if (keys[3]==true){
 						keys[3]=false;
+						
 						RaceRunner go = new RaceRunner();
 					
 					}
@@ -133,11 +134,9 @@ public class Race extends Canvas implements KeyListener, Runnable
 				
 			}
 			
-			if (System.currentTimeMillis()==start+setdiff*3000){
+			if (System.currentTimeMillis()==start+setdiff*5000){
 				setdiff++;
-				for (Block b: obstacles){
-					b.setSpeed(b.getSpeed()+1);
-				}
+				
 			}
 			
 			//movement
