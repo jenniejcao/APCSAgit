@@ -6,32 +6,32 @@ import java.io.File;
 
 import javax.imageio.ImageIO;
 import java.awt.Image;
-public class Block extends MovingThing implements Locatable {
+public class Coin extends MovingThing implements Locatable {
 	
 private Image image;
 
-	public Block()
+	public Coin()
 	{
-		super(0,0,0,0,0, Color.RED);
+		super(0,0,0,0,0, Color.BLUE);
 
 	}
 
 	//add other Block constructors - x , y , width, height, color
-	public Block(int x, int y){
+	public Coin(int x, int y){
 		super(x,y,0,0,0, Color.RED);
 		
 	}
-	public Block(int x, int y, int w, int h){
+	public Coin(int x, int y, int w, int h){
 		super(x,y,w,h,0,Color.RED);
 	
 	}
-	public Block(int x, int y, int w, int h, int s){
+	public Coin(int x, int y, int w, int h, int s){
 		super (x,y,w,h,s,Color.RED);	
 	}
-	public Block(int x, int y, int w, int h, int s, Color col){
+	public Coin(int x, int y, int w, int h, int s, Color col){
 		super (x,y,w,h,s,col);	
 	}
-	public Block(int x, int y, int w, int h, int s,  String file){
+	public Coin(int x, int y, int w, int h, int s,  String file){
 		super (x,y,w,h,s);	
 	
 		try
@@ -48,7 +48,7 @@ private Image image;
 	//add the other set methods
 	
 	
-
+   
    public void draw( Graphics window){
 		
 		window.drawImage(image,getX(),getY(),80,80,null);
@@ -56,12 +56,14 @@ private Image image;
   
    
 
+    
+
    //add a toString() method  - x , y , width, height, color
 	public String toString(){
 		return "x: "+getX()+" y: "+getY()+" width: "+getWidth()+" height: "+getHeight()+" speed: "+getSpeed();
 	}
 	public static void main(String args[]){
-		Block b = new Block(10,10,30,30,4);
+		Coin b = new Coin(10,10,30,30,4);
 		System.out.println(b);
 	}
 

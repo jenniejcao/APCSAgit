@@ -12,7 +12,7 @@ public class Car implements Collidable{
 	private int xPos;
 	private int yPos;
 	private Image image;
-	private int speed;
+
 	public Car(){
 		this(400,400);
 	}
@@ -62,22 +62,7 @@ public class Car implements Collidable{
 			setX(getX()+80);
 			}
 	}
-	@Override
-	public boolean didCollideLeft(Object obj) {
-		MovingThing b = (MovingThing)obj;
-		if ((didCollideTop(b)||didCollideBottom(b))){
-			return true;
-		}
-		return false;
-	}
-	@Override
-	public boolean didCollideRight(Object obj) {
-		MovingThing b = (MovingThing)obj;
-		if ((didCollideTop(b)||didCollideBottom(b))){
-			return true;
-		}
-		return false;
-	}
+
 	@Override
 	public boolean didCollideTop(Object obj) {
 		// TODO Auto-generated method stub
@@ -92,6 +77,9 @@ public class Car implements Collidable{
 		// TODO Auto-generated method stub
 		MovingThing b = (MovingThing)obj;
 		if ((getY()>= b.getY()&&(getY()+80<=b.getY()&&getY()+80<=b.getY()+80))&&getX()==b.getX()){
+			return true;
+		}
+		if ((getX()==b.getX())&&(getY()<=b.getY()&&b.getY()<=getY()+80)){
 			return true;
 		}
 		return false;

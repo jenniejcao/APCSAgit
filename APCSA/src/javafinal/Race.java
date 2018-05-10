@@ -24,6 +24,8 @@ public class Race extends Canvas implements KeyListener, Runnable
 	private int setdiff;
 	private int stage;
 	private String time;
+	private ArrayList<Coin>coins;
+	private int points;
 
 	public Race()
 	{
@@ -37,7 +39,8 @@ public class Race extends Canvas implements KeyListener, Runnable
 		start=System.currentTimeMillis();
 		end=start;
 		stage=0;
-	
+		coins=new ArrayList<Coin>();
+		points=0;
 	
 		setBackground(Color.WHITE);
 		this.addKeyListener(this);
@@ -64,7 +67,7 @@ public class Race extends Canvas implements KeyListener, Runnable
 			Graphics graphToBack = back.createGraphics();
 			if (stage==0){
 				graphToBack.drawString("Play RoadRacer!", 200, 100);
-				graphToBack.drawString("Avoid all the obstacles by pressing the arrow keys!", 200, 200);
+				graphToBack.drawString("Avoid all the obstacles by pressing the arrow keys! Try and collect coins!", 200, 200);
 				graphToBack.drawString("Press space to continue!", 200, 300);
 				graphToBack.drawString("made by Jennie Cao", 200, 400);
 				if (keys[2]==true){
@@ -78,7 +81,7 @@ public class Race extends Canvas implements KeyListener, Runnable
 			graphToBack.setColor(Color.WHITE);
 			graphToBack.drawString("ROAD RACER ", 25, 50 );
 			car.draw(graphToBack);
-			graphToBack.setColor(Color.MAGENTA);
+			graphToBack.drawString("points: "+points, 25, 75);
 			for (int i=0; i<9; i++){
 				Lane l = new Lane((i*80)+60);
 				lanes[i]=l;
@@ -86,12 +89,18 @@ public class Race extends Canvas implements KeyListener, Runnable
 			}
 			
 			Random r = new Random();
-			int m= r.nextInt(40);
+			int m= r.nextInt(50);
 			if (m==0&&cont){
-				int k =r.nextInt(9);
+				int k =r.nextInt(8);
 				Block b =new Block(lanes[k].returnx1(),0,80,80,2+setdiff,"penguin.png");
 				obstacles.add(b);
 				
+			}
+			int j= r.nextInt(1000);
+			if (j==0&&cont){
+				int k =r.nextInt(8);
+				Coin c =new Coin(lanes[k].returnx1(),0,80,80,2+setdiff,"coinTransparent.png");
+				coins.add(c);
 			}
 			for (Block b: obstacles){
 				b.draw(graphToBack);
@@ -101,7 +110,9 @@ public class Race extends Canvas implements KeyListener, Runnable
 						bl.setSpeed(0);
 						
 					}
-					
+					for (Coin c: coins){
+						c.setSpeed(0);
+					}
 					cont=false;
 				
 					graphToBack.setColor(Color.BLACK);
@@ -119,6 +130,21 @@ public class Race extends Canvas implements KeyListener, Runnable
 				}
 			 	
 			    }  
+			for (Coin c: coins){
+				c.draw(graphToBack);
+				c.move("DOWN");
+				if (car.didCollideTop(c)||car.didCollideBottom(c)){
+					graphToBack.setColor(Color.BLACK);
+					graphToBack.drawString("points: "+points, 25, 75);
+					points++;
+					c.setPos(1000, 1000);
+					c.setSpeed(0);
+					graphToBack.setColor(Color.WHITE);
+					graphToBack.drawString("points: "+points, 25, 75);
+					
+				}
+					
+			}
 			
 			if (cont==false&&end==start){
 			
@@ -128,6 +154,7 @@ public class Race extends Canvas implements KeyListener, Runnable
 				time=String.format("%.2f",timeins);
 				time=("Time: "+time+" seconds");
 				System.out.println(time);
+				System.out.println("Points: "+points);
 		
 				
 				
@@ -171,9 +198,7 @@ public class Race extends Canvas implements KeyListener, Runnable
 			twoDGraph.drawImage(back, null, 0, 0);
 
 }
-	  public String getTime(){
-		  return time;
-	  }
+	
 	
 		public void keyPressed(KeyEvent e)
 		{
