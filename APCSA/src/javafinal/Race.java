@@ -89,7 +89,7 @@ public class Race extends Canvas implements KeyListener, Runnable
 			}
 			
 			Random r = new Random();
-			int m= r.nextInt(50);
+			int m= r.nextInt(80);
 			if (m==0&&cont){
 				int k =r.nextInt(8);
 				Block b =new Block(lanes[k].returnx1(),0,80,80,2+setdiff,"penguin.png");
